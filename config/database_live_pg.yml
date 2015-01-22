@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: db660pok4656a9
+  username: txolbhufseqzam
+  password: HmnZ1NoPaBIeeEcr4Q_1n2A0XB
+  host: ec2-107-20-214-225.compute-1.amazonaws.com
+  port: 5432
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: myflix_test
+  pool: 5
+  username: YOUR_USERNAME
+  password: YOUR_PASSWORD

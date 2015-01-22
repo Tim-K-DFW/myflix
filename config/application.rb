@@ -4,6 +4,7 @@ require 'rails/all'
 
 Bundler.require(:default, Rails.env)
 
+
 module Myflix
   class Application < Rails::Application
     config.encoding = "utf-8"
@@ -16,4 +17,6 @@ module Myflix
       g.template_engine :haml
     end
   end
+
+  
 end
