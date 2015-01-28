@@ -1,9 +1,9 @@
 Myflix::Application.routes.draw do
   get 'ui(/:action)', controller: 'ui'
 
-  root to: 'sessions#landing'
-  get '/home', to: 'videos#index'
-  
+  root to: 'pages#front'        # redirects to front page which will redirect based on logged in or not
+  get '/home', to: 'videos#index'    # homepage for logged in users
+      
   resources :videos, only: [:create, :new, :show] do
     post 'search', on: :collection
   end

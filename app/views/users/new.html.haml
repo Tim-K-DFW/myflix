@@ -8,30 +8,15 @@
           .form-group
             = f.label 'Email Address', class: 'control-label col-sm-2'
             .col-sm-6
-              = f.email_field :email, hide_label: :true, class: 'form-control'
+              = f.email_field :email, hide_label: :true
           .form-group
             = f.label 'Password', class: 'control-label col-sm-2'
             .col-sm-6
-              = f.password_field :password, hide_label: :true, class: 'form-control'
+              = f.password_field :password, hide_label: :true
           .form-group
             = f.label 'Full Name', class: 'control-label col-sm-2'
             .col-sm-6
-              = f.text_field :username, hide_label: :true, class: 'form-control'
-        %fieldset.credit_card
-          .form-group
-            %label.control-label.col-sm-2 Credit Card Number
-            .col-sm-6
-              %input.form-control(type="text")
-          .form-group
-            %label.control-label.col-sm-2 Security Code
-            .col-sm-6
-              %input.form-control(type="text")
-          .form-group
-            %label.control-label.col-sm-2 Expiration
-            .col-sm-3
-              = select_month(Date.today, {add_month_numbers: true},  class: 'form-control')
-            .col-sm-2
-              = select_year(Date.today.year, {start_year: Date.today.year, end_year: Date.today.year + 4}, class: 'form-control')
+              = f.text_field :username, hide_label: :true
         %fieldset.actions.control-group.col-sm-offset-2
           .controls
             = f.submit 'Sign up', class: 'btn btn-default'

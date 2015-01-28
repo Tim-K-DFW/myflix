@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :logged_in?, :current_user
+  before_action :require_login
 
 
   def logged_in?
@@ -14,4 +15,12 @@ class ApplicationController < ActionController::Base
       nil
     end
   end
+
+  def require_login
+    if !logged_in?
+      flash[:danger] = 'This section is for member only. Please register to become one.'
+      redirect_to register_path
+    end
+  end
+
 end
