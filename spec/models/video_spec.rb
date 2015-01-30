@@ -5,6 +5,23 @@ describe Video do
   it { should validate_presence_of (:title) }
   it { should validate_presence_of (:description) }
   it { should belong_to(:category) }
+  it { should have_many :reviews }
+
+  describe '#average_score' do
+    let (:video)  { Fabricate :video }
+
+    it 'returns 0 when no ratigns were submitted' do
+      expect(video.average_score).to eq(0)
+    end
+    
+    it 'returns average score when at least one rating was submitted' do
+      rev1 = Fabricate(:review, score: 1, video: video, author: Fabricate(:user))
+      rev2 = Fabricate(:review, score: 5, video: video, author: Fabricate(:user))
+      # video.reviews << rev1
+      # video.reviews << rev2
+      expect(video.average_score).to eq(3.0)
+    end
+  end
 
   describe "search by title" do
     Video.all.destroy_all

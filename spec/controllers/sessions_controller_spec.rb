@@ -16,18 +16,17 @@ describe SessionsController do
     end
 
     describe 'GET destroy' do
+      before { get 'destroy' }
+
       it 'cleans up session' do
-        get 'destroy'
         expect(session[:user_id]).to eq(nil)
       end
       
       it 'sets flash notice' do
-        get 'destroy'
         expect(flash[:info]).to eq('You have logged out.')
       end
       
       it 'redirects to root' do
-        get 'destroy'
         expect(response).to redirect_to root_path
       end
     end

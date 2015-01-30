@@ -6,6 +6,7 @@ Myflix::Application.routes.draw do
       
   resources :videos, only: [:create, :new, :show] do
     post 'search', on: :collection
+    resources :reviews, only: [:create]
   end
   resources :categories, only: [:create, :new, :show]
 

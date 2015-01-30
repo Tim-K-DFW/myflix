@@ -3,4 +3,5 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 3}
   validates :email, presence: true, length: {minimum: 3}
   has_secure_password validations: false
+  has_many :reviews
 end

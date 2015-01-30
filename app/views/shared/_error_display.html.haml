@@ -1,0 +1,5 @@
+.alert.alert-danger
+  %h5 There were some errors with your input:
+  %ul
+    - faulty_object.errors.full_messages.each do |message|
+      %li= message
