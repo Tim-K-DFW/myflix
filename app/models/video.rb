@@ -1,5 +1,7 @@
 class Video < ActiveRecord::Base
   belongs_to :category
+  has_many :lines
+  has_many :users, through: :lines
   validates_presence_of :title, :description
   has_many :reviews, -> { order("created_at DESC") }
 

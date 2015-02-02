@@ -14,8 +14,8 @@
 %section.reviews.container
   .row
     .col-sm-10.col-sm-offset-1
+      = render 'shared/error_display', faulty_object: @review if @review.errors.any?
       = form_for [@video, @review] do |f|
-        = render 'shared/error_display', faulty_object: @review if @review.errors.any?
         %fieldset
           .form-group
             = f.label 'Rate this video'

@@ -17,4 +17,6 @@ Myflix::Application.routes.draw do
   get '/register', to: 'users#new'
   resources :users, only: [:show, :create, :edit, :update]
 
-end
+  get '/queue', to: 'lines#show', as: 'show_queue'
+  post '/queue', to: 'lines#update', as: 'update_queue'
+  end
