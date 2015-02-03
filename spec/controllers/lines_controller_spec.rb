@@ -36,13 +36,12 @@ describe LinesController do
         post :create, id: video3.id
         expect(assigns(:line).priority).to eq(3)
       end
-    end
+    end # context
    
     it 'redirects to queue index page' do
       post :create, id: video3.id
       expect(response).to redirect_to show_queue_path
     end
-
   end
 
   describe 'DELETE destroy' do
@@ -50,13 +49,6 @@ describe LinesController do
       let! (:line1) { Line.create(video: video1, user: user, priority: 1) }
       let! (:line2) { Line.create(video: video2, user: user, priority: 2) }
       let! (:line3) { Line.create(video: video3, user: user, priority: 3) }
-      
-   
-
-    # it 'retrieves queue item id' do
-    #   delete :destroy, id: Line.where(video: video3).first.id
-    #   expect(assigns(:item)).to eq(Line.where(video: video3).first)
-    # end
 
     it 'removes the item from queue' do
       delete :destroy, id: Line.where(video: video3).first.id
@@ -69,12 +61,9 @@ describe LinesController do
       expect(Line.find(line3.id).priority).to eq(2)
     end
 
-    it 'redirects to queue index page'
+    it 'redirects to queue index page' do
+      delete :destroy, id: line1.id
+      expect(response).to redirect_to show_queue_path
+    end
   end
-
-
-  describe 'POST update' do
-
-  end
-
 end

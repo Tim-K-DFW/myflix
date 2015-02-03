@@ -13,8 +13,8 @@ class LinesController < ApplicationController
   def destroy
     @item = Line.find(params[:id])
     priority = @item.priority
-    @item.destroy
-    update_priorities
+    @item.destroy if @item.user.id == current_user.id
+    Line.bump_up(current_user.id)
     redirect_to show_queue_path
   end
 
