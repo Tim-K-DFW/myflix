@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Line do
   it { should belong_to :user }
   it { should belong_to :video }
-  # it { should validate_uniqueness_of :video_id }
+  it { should validate_uniqueness_of :video_id }
   it { should validate_uniqueness_of :priority }
 
   it 'returns rating for given user\'s review if rating exists' do

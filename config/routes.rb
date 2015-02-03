@@ -17,6 +17,13 @@ Myflix::Application.routes.draw do
   get '/register', to: 'users#new'
   resources :users, only: [:show, :create, :edit, :update]
 
-  get '/queue', to: 'lines#show', as: 'show_queue'
+  get '/queue', to: 'lines#index', as: 'show_queue'
+  post '/add_2_queue', to: 'lines#create'
+  delete '/queue/:id', to: 'lines#destroy', as: 'remove_queue_item'
   post '/queue', to: 'lines#update', as: 'update_queue'
+  
+
   end
+
+
+  # manual routes for queue items to keep the urls pretty (i.e. 'queue' instead of 'queue_items')

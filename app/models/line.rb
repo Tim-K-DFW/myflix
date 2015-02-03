@@ -8,4 +8,8 @@ class Line < ActiveRecord::Base
     review = self.video.reviews.where(author: self.user).first
     review.score if review
   end
+
+  def self.bump_up(user, position)
+
+  end
 end
