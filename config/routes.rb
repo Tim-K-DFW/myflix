@@ -19,7 +19,8 @@ Myflix::Application.routes.draw do
 
   get '/queue', to: 'lines#index', as: 'show_queue'
   post '/add_2_queue', to: 'lines#create'
-  delete '/queue/:id', to: 'lines#destroy', as: 'remove_queue_item'  
+  delete '/queue/:id', to: 'lines#destroy', as: 'remove_queue_item'
+  post '/queue/', to: 'lines#update', as: 'update_queue'
 
 end
 

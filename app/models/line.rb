@@ -3,6 +3,7 @@ class Line < ActiveRecord::Base
   belongs_to :video
   validates_uniqueness_of :video, scope: :user
   validates_uniqueness_of :priority, scope: :user
+  validates :priority, numericality: { only_integer: true }
 
   def score
     review = self.video.reviews.where(author: self.user).first
@@ -16,4 +17,19 @@ class Line < ActiveRecord::Base
       users_queue[position - 1].save
     end
   end
+
+  def self.update_queue(user_id, new_order)
+    begin
+      Line.transaction do
+        new_order.each do |item|
+          entry = Line.where(user_id: user_id, priority: item.first).first
+          entry.priority = item.last
+          entry.save!
+        end
+      end
+    rescue
+    end
+    Line.bump_up(user_id)
+  end
+
 end

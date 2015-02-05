@@ -18,5 +18,10 @@ class LinesController < ApplicationController
     redirect_to show_queue_path
   end
 
+  def update
+    Line.update_queue(current_user.id)
+    redirect_to show_queue_path
+  end
+
 
 end

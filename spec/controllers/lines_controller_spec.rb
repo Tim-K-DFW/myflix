@@ -46,9 +46,9 @@ describe LinesController do
 
   describe 'DELETE destroy' do
    
-      let! (:line1) { Line.create(video: video1, user: user, priority: 1) }
-      let! (:line2) { Line.create(video: video2, user: user, priority: 2) }
-      let! (:line3) { Line.create(video: video3, user: user, priority: 3) }
+    let! (:line1) { Line.create(video: video1, user: user, priority: 1) }
+    let! (:line2) { Line.create(video: video2, user: user, priority: 2) }
+    let! (:line3) { Line.create(video: video3, user: user, priority: 3) }
 
     it 'removes the item from queue' do
       delete :destroy, id: Line.where(video: video3).first.id
@@ -66,4 +66,12 @@ describe LinesController do
       expect(response).to redirect_to show_queue_path
     end
   end
+
+  describe 'POST update' do
+    
+    
+    it 'redirects to queue display page'
+
+  end
+
 end
