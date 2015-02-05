@@ -70,7 +70,12 @@ describe LinesController do
   describe 'POST update' do
     
     
-    it 'redirects to queue display page'
+    it 'redirects to queue display page' do
+      Line.update_queue(user.id, {1 => '3'})
+      expect(response).to redirect_to show_queue_path
+    end
+
+
 
   end
 

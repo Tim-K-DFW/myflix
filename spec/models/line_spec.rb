@@ -89,5 +89,15 @@ describe Line do
       expect(line5.priority).to eq(5)
     end
 
+    it 'updates queue with position swap' do
+      Line.update_queue(user.id, {1 => '4'})
+      [line1, line2, line3, line4, line5].each { |i| i.reload }
+      expect(line1.priority).to eq(4)
+      expect(line2.priority).to eq(2)
+      expect(line3.priority).to eq(3)
+      expect(line4.priority).to eq(1)
+      expect(line5.priority).to eq(5)
+    end
+
   end
 end

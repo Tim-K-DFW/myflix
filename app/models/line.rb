@@ -18,13 +18,23 @@ class Line < ActiveRecord::Base
     end
   end
 
-  def self.update_queue(user_id, new_order)
+  def self.update_queue(user_id, new_order)  # add manual check for swap
     begin
       Line.transaction do
         new_order.each do |item|
           entry = Line.where(user_id: user_id, priority: item.first).first
           entry.priority = item.last
-          entry.save!
+          swap_entry = Line.where(user_id: user_id, priority: item.last).first
+          binding.pry
+          if swap_entry
+            swap_entry.priority = -1
+            swap_entry.save!
+            entry.save!
+            swap_entry.priority = item.first
+            swap_entry.save!
+          else
+            entry.save!
+          end
         end
       end
     rescue
