@@ -18,7 +18,8 @@
               - @queue.each do |item|
                 %tr
                   %td
-                    %input.form-control(type="text" name="new_positions[#{item.priority}]" value="#{item.priority}")                  
+                    = hidden_field_tag 'new_positions[][id]', item.id
+                    = text_field_tag 'new_positions[][new_position]', item.priority, class: 'form-control'
                   %td
                     = link_to item.video.title, video_path(item.video)
                   %td

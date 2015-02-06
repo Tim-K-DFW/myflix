@@ -12,9 +12,8 @@ class LinesController < ApplicationController
 
   def destroy
     @item = Line.find(params[:id])
-    priority = @item.priority
     @item.destroy if @item.user.id == current_user.id
-    Line.bump_up(current_user.id)
+    current_user.bump_up_queue
     redirect_to show_queue_path
   end
 
@@ -22,6 +21,5 @@ class LinesController < ApplicationController
     Line.update_queue(current_user.id, params[:new_positions])
     redirect_to show_queue_path
   end
-
 
 end

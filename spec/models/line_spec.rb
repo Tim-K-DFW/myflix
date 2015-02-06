@@ -48,55 +48,50 @@ describe Line do
     it 'bumps up all when first out of 5 is removed' do
       line1.destroy
       Line.bump_up(user.id)
-      [line2, line3, line4, line5].each { |i| i.reload }
-      expect(line2.priority).to eq(1)
-      expect(line3.priority).to eq(2)
-      expect(line4.priority).to eq(3)
-      expect(line5.priority).to eq(4)
+      expect(line2.reload.priority).to eq(1)
+      expect(line3.reload.priority).to eq(2)
+      expect(line4.reload.priority).to eq(3)
+      expect(line5.reload.priority).to eq(4)
     end
   end
 
   describe '.update_queue' do
 
     it 'updates queue if all inputs are integers and unique and no swap' do
-      Line.update_queue(user.id, {1 => '7', 2 => '6'})
-      [line1, line2, line3, line4, line5].each { |i| i.reload }
-      expect(line1.priority).to eq(5)
-      expect(line2.priority).to eq(4)
-      expect(line3.priority).to eq(1)
-      expect(line4.priority).to eq(2)
-      expect(line5.priority).to eq(3)
+      Line.update_queue(user.id, {line1.id => '7', line2.id => '6'})
+      expect(line1.reload.priority).to eq(5)
+      expect(line2.reload.priority).to eq(4)
+      expect(line3.reload.priority).to eq(1)
+      expect(line4.reload.priority).to eq(2)
+      expect(line5.reload.priority).to eq(3)
     end
 
     it 'does not update queue if at least one input is not an integer' do
-      Line.update_queue(user.id, {1 => 'asd', 2 => '6'})
-      [line1, line2, line3, line4, line5].each { |i| i.reload }
-      expect(line1.priority).to eq(1)
-      expect(line2.priority).to eq(2)
-      expect(line3.priority).to eq(3)
-      expect(line4.priority).to eq(4)
-      expect(line5.priority).to eq(5)
+      Line.update_queue(user.id, {line1.id => 'asd', line2.id => '6'})
+      expect(line1.reload.priority).to eq(1)
+      expect(line2.reload.priority).to eq(2)
+      expect(line3.reload.priority).to eq(3)
+      expect(line4.reload.priority).to eq(4)
+      expect(line5.reload.priority).to eq(5)
     end
 
 
-    it 'does not update queue if same number is submitted more than once' do
-      Line.update_queue(user.id, {1 => '4', 2 => '4'})
-      [line1, line2, line3, line4, line5].each { |i| i.reload }
-      expect(line1.priority).to eq(1)
-      expect(line2.priority).to eq(2)
-      expect(line3.priority).to eq(3)
-      expect(line4.priority).to eq(4)
-      expect(line5.priority).to eq(5)
-    end
+    # it 'does not update queue if same number is submitted more than once' do
+    #   Line.update_queue(user.id, {line1.id => '4', line2.id => '4'})
+    #   expect(line1.reload.priority).to eq(1)
+    #   expect(line2.reload.priority).to eq(2)
+    #   expect(line3.reload.priority).to eq(3)
+    #   expect(line4.reload.priority).to eq(4)
+    #   expect(line5.reload.priority).to eq(5)
+    # end
 
-    it 'updates queue with position swap' do
-      Line.update_queue(user.id, {1 => '4'})
-      [line1, line2, line3, line4, line5].each { |i| i.reload }
-      expect(line1.priority).to eq(4)
-      expect(line2.priority).to eq(2)
-      expect(line3.priority).to eq(3)
-      expect(line4.priority).to eq(1)
-      expect(line5.priority).to eq(5)
+    it 'updates queue with position swap spelled out' do
+      Line.update_queue(user.id, {line1.id => '4', line4.id => '1'})
+      expect(line1.reload.priority).to eq(4)
+      expect(line2.reload.priority).to eq(2)
+      expect(line3.reload.priority).to eq(3)
+      expect(line4.reload.priority).to eq(1)
+      expect(line5.reload.priority).to eq(5)
     end
 
   end
