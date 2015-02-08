@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: myflix-dev
+  pool: 5
+  username: ak
+  password: leAN
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: myflix-test
+  pool: 5
+  username: ak
+  password: leAN
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: myflix-prod
+  pool: 5
+  username: ak
+  password: leAN

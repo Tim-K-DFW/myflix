@@ -35,32 +35,12 @@ describe Line do
     end
   end
 
-  describe '.bump_up' do
-    
-    it 'bumps up last wto when 3rd out of 5 is removed' do
-      line3.destroy
-      Line.bump_up(user.id)
-      [line4, line5].each { |i| i.reload }
-      expect(line4.priority).to eq(3)
-      expect(line5.priority).to eq(4)
-    end
-
-    it 'bumps up all when first out of 5 is removed' do
-      line1.destroy
-      Line.bump_up(user.id)
-      expect(line2.reload.priority).to eq(1)
-      expect(line3.reload.priority).to eq(2)
-      expect(line4.reload.priority).to eq(3)
-      expect(line5.reload.priority).to eq(4)
-    end
-  end
-
   describe '.update_queue' do
 
     it 'updates queue if all inputs are integers and unique and no swap' do
-      Line.update_queue(user.id, {line1.id => '7', line2.id => '6'})
-      expect(line1.reload.priority).to eq(5)
-      expect(line2.reload.priority).to eq(4)
+      Line.update_queue(user.id, [{id: line1.id, new_position: 6}, {id: line2.id, new_position: 7}])
+      expect(line1.reload.priority).to eq(4)
+      expect(line2.reload.priority).to eq(5)
       expect(line3.reload.priority).to eq(1)
       expect(line4.reload.priority).to eq(2)
       expect(line5.reload.priority).to eq(3)
@@ -74,19 +54,9 @@ describe Line do
       expect(line4.reload.priority).to eq(4)
       expect(line5.reload.priority).to eq(5)
     end
-
-
-    # it 'does not update queue if same number is submitted more than once' do
-    #   Line.update_queue(user.id, {line1.id => '4', line2.id => '4'})
-    #   expect(line1.reload.priority).to eq(1)
-    #   expect(line2.reload.priority).to eq(2)
-    #   expect(line3.reload.priority).to eq(3)
-    #   expect(line4.reload.priority).to eq(4)
-    #   expect(line5.reload.priority).to eq(5)
-    # end
-
+  
     it 'updates queue with position swap spelled out' do
-      Line.update_queue(user.id, {line1.id => '4', line4.id => '1'})
+      Line.update_queue(user.id, [{id: line1.id, new_position: 4}, {id: line4.id, new_position: 1}])
       expect(line1.reload.priority).to eq(4)
       expect(line2.reload.priority).to eq(2)
       expect(line3.reload.priority).to eq(3)

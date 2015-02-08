@@ -18,7 +18,7 @@ class LinesController < ApplicationController
   end
 
   def update
-    Line.update_queue(current_user.id, params[:new_positions])
+    Line.update_queue(current_user.id, {new_positions: params[:new_positions], new_ratings: params[:new_ratings]})
     redirect_to show_queue_path
   end
 

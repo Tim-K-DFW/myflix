@@ -25,12 +25,8 @@
                   %td
                     = button_to "Play", nil, class: "btn btn-default"
                   %td
-                    %select.form-group(name="")
-                      %option(value="5") 5 Stars
-                      %option(value="4") 4 Stars
-                      %option(value="3") 3 Stars
-                      %option(value="2") 2 Stars
-                      %option(value="1") 1 Star
+                    = hidden_field_tag 'new_ratings[][id]', item.id
+                    = select_tag 'new_ratings[][new_rating]', options_for_select([5, 4, 3, 2, 1].map { |num| [pluralize(num, 'Star'), num] }, this_users_score(item)), include_blank: true, class: 'form-group'
                   %td
                     = link_to item.video.category.name, category_path(item.video.category)
                   %td

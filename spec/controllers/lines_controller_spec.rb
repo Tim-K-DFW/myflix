@@ -68,11 +68,33 @@ describe LinesController do
   end
 
   describe 'POST update' do
-    
-    
+        
     it 'redirects to queue display page' do
-      Line.update_queue(user.id, {1 => '3'})
+      line1 = Line.create(video: video1, user: user, priority: 1)
+      post :update, new_positions: [{id: line1.id, new_position: line1.priority}], new_ratings: [{id: line1.id, new_rating: ''}]
       expect(response).to redirect_to show_queue_path
+    end
+
+    it 'updates rating for this user' do
+      video1.reviews << Fabricate(:review, author: user, score: 1)
+      line1 = Line.create(video: video1, user: user, priority: 1)
+      post :update, new_positions: [{id: line1.id, new_position: line1.priority}], new_ratings: [{id: line1.id, new_rating: 4}]
+      expect(video1.reviews.select{|review| review[:user_id] == user.id}.first.score).to eq(4)
+    end
+
+    it 'does not update ratings for other users' do
+      video1.reviews << Fabricate(:review, author: user, score: 1)
+      user2 = Fabricate(:user)
+      video1.reviews << Fabricate(:review, author: user2, score: 5)
+      line1 = Line.create(video: video1, user: user, priority: 1)
+      post :update, new_positions: [{id: line1.id, new_position: line1.priority}], new_ratings: [{id: line1.id, new_rating: 4}]
+      expect(video1.reviews.select{|review| review[:user_id] == user2.id}.first.score).to eq(5)
+    end
+
+    it 'creates new review with submitted score if review did not exist' do
+      line1 = Line.create(video: video1, user: user, priority: 1)
+      post :update, new_positions: [{id: line1.id, new_position: line1.priority}], new_ratings: [{id: line1.id, new_rating: 4}]
+      expect(video1.reviews.select{|review| review[:user_id] == user.id}.first.score).to eq(4)
     end
 
 
