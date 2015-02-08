@@ -1,6 +1,4 @@
-# test - changed from mac in nitrous folder
-# test - added from dell
-# and another test -- added from mac
+# test - added from mac (Sunday)
 
 source 'https://rubygems.org'
 ruby '2.1.1'
