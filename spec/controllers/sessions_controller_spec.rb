@@ -2,11 +2,8 @@ require 'spec_helper'
 
 describe SessionsController do
   
-  let! (:user1) { Fabricate(:user) }
-  let! (:user2) { Fabricate(:user) }
-
   context 'with authenticated user' do
-    before { session[:user_id] = User.first.id }
+    before { set_up_session }
     
     describe 'GET new' do
       it 'redirects to home' do
@@ -30,10 +27,10 @@ describe SessionsController do
         expect(response).to redirect_to root_path
       end
     end
-  end
+  end   # with authenticated user
 
   context 'without authenticated user' do
-    before { session[:user_id] = nil } 
+    before { Fabricate(:user) }
     
     describe 'GET destroy' do
       it 'redirects to register path' do
@@ -41,32 +38,34 @@ describe SessionsController do
         expect(response).to redirect_to register_path
       end
     end
-  end
 
-  describe 'POST create' do
-    it 'finds user by params email if that user exists' do
-      post 'create', email: User.first.email
-      expect(assigns(:user)).to eq(User.first)
-    end
+    describe 'POST create' do
+      it 'finds user by params email if that user exists' do
+        post 'create', email: User.first.email
+        expect(assigns(:user)).to eq(User.first)
+      end
 
-    it 'redirects to login if user not found' do
-      post 'create', email: 'random_email@email.com'
-      expect(response).to redirect_to login_path
-    end
+      context 'with correct credentials' do
+        before { post 'create', email: User.first.email, password: 'password' }
 
-    it 'sets session to user id if user found and password matches' do
-      post 'create', email: User.first.email, password: 'password'
-      expect(session[:user_id]).to eq(User.first.id)
-    end
+        it 'sets session to user id if user found and password matches' do
+          expect(session[:user_id]).to eq(User.first.id)
+        end
 
-    it 'redirects to home if user found and password matches' do
-      post 'create', email: User.first.email, password: 'password'
-      expect(response).to redirect_to home_path
-    end
+        it 'redirects to home if user found and password matches' do
+          expect(response).to redirect_to home_path
+        end
+      end
 
-    it 'redirects to login if user found but password does not match' do
-      post 'create', email: User.first.email, password: 'wrong password'
-      expect(response).to redirect_to login_path
+      it 'redirects to login if user not found' do
+        post 'create', email: 'random_email@email.com'
+        expect(response).to redirect_to login_path
+      end
+
+      it 'redirects to login if user found but password does not match' do
+        post 'create', email: User.first.email, password: 'wrong password'
+        expect(response).to redirect_to login_path
+      end
     end
-  end
+  end # without authenticated user
 end

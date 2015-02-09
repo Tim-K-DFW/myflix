@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UsersController do
 
   context 'with authenticated user' do
-    before { session[:user_id] = 1 }
+    before { set_up_session }
 
     describe 'GET new' do
       it 'redirects to home' do

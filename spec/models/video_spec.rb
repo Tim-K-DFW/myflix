@@ -8,25 +8,22 @@ describe Video do
   it { should have_many :reviews }
 
   describe '#average_score' do
-    let (:video)  { Fabricate :video }
+    let!(:video)  { Fabricate :video }
 
     it 'returns 0 when no ratigns were submitted' do
       expect(video.average_score).to eq(0)
     end
     
     it 'returns average score when at least one rating was submitted' do
-      rev1 = Fabricate(:review, score: 1, video: video, author: Fabricate(:user))
-      rev2 = Fabricate(:review, score: 5, video: video, author: Fabricate(:user))
-      # video.reviews << rev1
-      # video.reviews << rev2
+      Fabricate(:review, score: 1, video: video, author: Fabricate(:user))
+      Fabricate(:review, score: 5, video: video, author: Fabricate(:user))
       expect(video.average_score).to eq(3.0)
     end
   end
 
-  describe "search by title" do
-    Video.all.destroy_all
-    video1 = Video.create(title: 'Futurama', description: 'in the future')
-    video2 = Video.create(title: 'Future weapons', description: 'vintage', created_at: 1.day.ago)
+  describe ".search by title" do
+    let!(:video1) { Fabricate(:video, title: 'Futurama', description: 'in the future') }
+    let!(:video2) { Fabricate(:video, title: 'Future weapons', description: 'vintage', created_at: 1.day.ago) }
 
     it 'returns an empty array for no match' do
       search_str = 'south'
