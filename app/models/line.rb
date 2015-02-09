@@ -6,43 +6,36 @@ class Line < ActiveRecord::Base
   validates :priority, numericality: { only_integer: true }
 
   def score # score of a user-specific video review
-    review = self.video.reviews.where(author: self.user).first
     review.score if review
   end
 
+  def score=(new_score)
+    if review
+      review.update_column(:score, new_score)
+    else
+      new_review = Review.create(score: new_score, author: self.user, video: self.video)
+      new_review.save(validate: false)
+    end
+  end
+
   def self.update_queue(user_id, args)
-    update_queue_positions(user_id, args[:new_positions])
-    update_ratings(user_id, args[:new_ratings])
+    begin
+      Line.transaction do
+        args.each do |item|
+          entry = Line.find(item[:id])
+          entry.update_attributes!(priority: item[:new_position]) if entry.user == User.find(user_id)
+          entry.score = item[:new_rating]
+        end
+      end
+    rescue
+    end
     User.find(user_id).bump_up_queue
   end
 
   private
 
-  def self.update_queue_positions(user_id, new_order)
-    begin
-      Line.transaction do
-        new_order.each do |item|
-          entry = Line.find(item[:id])
-          entry.update_attributes!(priority: item[:new_position]) if entry.user == User.find(user_id)
-        end
-      end
-    rescue
-    end
+  def review
+    @review ||= Review.where(user_id: self.user.id, video: self.video).first
   end
 
-  def self.update_ratings(user_id, new_ratings)
-    new_ratings.each do |item|
-      this_video = Line.find(item[:id]).video
-      review = this_video.reviews.select{|review| review[:user_id] == user_id}.first
-      if !review.nil?
-        review.update_attributes(score: item[:new_rating]) unless item[:new_rating].blank?
-        review.save(:validate => false)
-           
-      else
-        review = Review.new(video: this_video, author: User.find(user_id), score: item[:new_rating])
-        review.save(:validate => false)
-     
-      end
-    end
-  end
 end
