@@ -9,7 +9,7 @@ feature 'user signs in' do
     fill_in :email, with: user.email
     fill_in :password, with: user.password
     click_button 'Sign In'
-    
+    expect(page).to have_content('My Queue')    
   end
 
   scenario 'trying to sign in with incorrect credentials' do
