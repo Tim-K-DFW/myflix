@@ -1,4 +1,4 @@
-# test - form mac and then git
+# test - form mac and then git1
 source 'https://rubygems.org'
 ruby '2.1.1'
 
