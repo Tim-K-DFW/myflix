@@ -1,4 +1,4 @@
-# test - form mac and then git1
+# test - form mac and then git via Nitro
 source 'https://rubygems.org'
 ruby '2.1.1'
 
