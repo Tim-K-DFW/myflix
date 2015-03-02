@@ -54,4 +54,24 @@ describe UsersController do
       end
     end 
   end
+
+  describe 'GET show' do
+    let(:pete) { Fabricate(:user, username: 'pete') }
+    let(:jimmy) { Fabricate(:user, username: 'jimmy') }
+
+    context 'with authenticated user' do
+      before { set_up_session(jimmy) }
+
+      it 'retreives correct user into instance variable' do
+        get :show, id: pete.id
+        expect(assigns(:user)).to eq(pete)
+      end
+    end
+
+    context 'without authenticated user' do
+      it_behaves_like 'require_login' do
+        let(:action) {get :show, id: pete.id}
+      end
+    end # without authenticated user
+  end # GET show
 end
