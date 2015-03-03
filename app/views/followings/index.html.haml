@@ -1,0 +1,22 @@
+%section.people
+%section.people
+  %header
+    %h2 People I Follow
+  %table.table
+    %thead
+      %tr
+        %th(width="30%")
+        %th(width="20%") Videos in Queue
+        %th(width="20%") Followers
+        %th(width="30%") Unfollow
+    %tbody
+      - @following_relations.each do |relation|
+        %tr
+          %td
+            %img(src="/tmp/avatar_pete.png")
+            = link_to relation.leader.username, relation.leader
+          %td.extra-padding= relation.leader.lines.count
+          %td.extra-padding= relation.leader.leading_relations.count
+          %td.extra-padding
+            = link_to relation, method: :delete do
+              %i.glyphicon.glyphicon-remove

@@ -5,7 +5,7 @@
         %header
           %img(src="/tmp/avatar_pete.png")
           %h2 #{@user.username}'s video collections (#{@user.lines.size})
-          %button.btn.btn-default Follow
+          = button_tag 'Follow', {data: {id: @user.id}, action: '', class: 'btn btn-default'}
         %table.table
           %thead
             %tr
