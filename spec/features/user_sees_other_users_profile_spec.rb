@@ -12,8 +12,8 @@ feature 'user sees other users profile' do
   background do
     Line.create(user: pete, video: futurama, priority: 1)
     Line.create(user: pete, video: blackhawk, priority: 2)
-    feature_login(jimmy)
-    click_link("video_#{futurama.id}_link")
+    login(jimmy)
+    click_video_on_homepage(futurama)
     click_link('Pete')
   end
 

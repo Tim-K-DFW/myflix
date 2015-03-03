@@ -18,5 +18,5 @@
           %td.extra-padding= relation.leader.lines.count
           %td.extra-padding= relation.leader.leading_relations.count
           %td.extra-padding
-            = link_to relation, method: :delete do
+            = link_to relation, method: :delete, id: "user_#{relation.leader.id}_unfollow" do
               %i.glyphicon.glyphicon-remove

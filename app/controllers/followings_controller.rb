@@ -5,8 +5,8 @@ class FollowingsController < ApplicationController
 
   def create
     leader = User.find(params[:id])
-    Following.create(leader: leader, follower: current_user) if Following.where(follower: current_user, leader: leader).blank?
-    redirect_to user_path(params[:id])
+    Following.create(leader: leader, follower: current_user) if current_user.can_follow?(leader)
+    redirect_to people_path
   end
 
   def destroy

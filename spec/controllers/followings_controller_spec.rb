@@ -49,12 +49,20 @@ describe FollowingsController do
       let(:action) { post :create }
     end
 
-    it 'creates a correct Followign object' do
+    it 'creates a correct Following object' do
       alice = Fabricate(:user)
       pete = Fabricate(:user)
       set_up_session(pete)
       post :create, id: alice.id
       expect(pete.following_relations.first.leader).to eq(alice)     
+    end
+
+    it 'redirects to people page' do
+      alice = Fabricate(:user)
+      pete = Fabricate(:user)
+      set_up_session(pete)
+      post :create, id: alice.id
+      expect(response).to redirect_to(people_path)
     end
 
     it 'does not do anything if the person is already being followed' do
@@ -64,6 +72,14 @@ describe FollowingsController do
       Following.create(leader: alice, follower: pete)
       post :create, id: alice.id
       expect(pete.following_relations.count).to eq(1)
+    end
+
+    it 'does not do anything if user tries to follow himself' do
+      pete = Fabricate(:user)
+      set_up_session(pete)
+      post :create, id: pete.id
+      expect(pete.following_relations.count).to eq(0)
+      expect(pete.leading_relations.count).to eq(0)
     end
   end
 end

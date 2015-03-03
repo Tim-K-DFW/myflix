@@ -16,4 +16,12 @@ class User < ActiveRecord::Base
       users_queue[position - 1].update_attributes(priority: position)
     end
   end
+
+  def follows?(another_user)
+    following_relations.map(&:leader).include?(another_user)
+  end
+
+  def can_follow?(another_user)
+    !follows?(another_user) && self != another_user
+  end
 end
