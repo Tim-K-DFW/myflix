@@ -7,11 +7,21 @@ class User < ActiveRecord::Base
   has_many :lines
   has_many :videos, through: :lines
 
-  def bump_up_queue # normalizes the queue
+  has_many :following_relations, class_name: 'Following', foreign_key: 'follower_id'
+  has_many :leading_relations, class_name: 'Following', foreign_key: 'leader_id'
+
+  def bump_up_queue
     users_queue = self.lines.order('priority ASC')
     (1..users_queue.size).each do |position|
       users_queue[position - 1].update_attributes(priority: position)
     end
   end
 
+  def follows?(another_user)
+    following_relations.map(&:leader).include?(another_user)
+  end
+
+  def can_follow?(another_user)
+    !follows?(another_user) && self != another_user
+  end
 end

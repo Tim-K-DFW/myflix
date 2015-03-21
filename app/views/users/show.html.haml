@@ -1,0 +1,37 @@
+%section.user.container
+  .row
+    .col-sm-10.col-sm-offset-1
+      %article
+        %header
+          %img(src="/tmp/avatar_pete.png")
+          %h2 #{@user.username}'s video collections (#{@user.lines.size})
+          / = button_to 'Follow', {action: 'create', controller: 'followings'}, params: {id: @user.id}, class: 'btn btn-default'
+          = link_to 'Follow', followings_path(id: @user.id), method: :post, class:'btn btn-default' if current_user.can_follow?(@user)
+        %table.table
+          %thead
+            %tr
+              %th(width="30%") Video Title
+              %th(width="15%") Genre
+          %tbody
+            - @user.lines.each do |line|
+              %tr
+                %td
+                  = link_to line.video.title, line.video
+                %td
+                  = link_to line.video.category.name, line.video.category
+
+%section.user_reviews.container
+  .row
+    .col-sm-10.col-sm-offset-1
+      %header
+        %h3 #{@user.username}'s Reviews (#{@user.reviews.count})
+      %ul
+        - @user.reviews.each do |review|
+          %article.review
+            %li.row
+              .col-sm-2
+                %p
+                  = link_to "\"#{review.video.title}\"", review.video
+                %col Rating: #{review.score} / 5
+              .col-sm-8
+                %p= review.body

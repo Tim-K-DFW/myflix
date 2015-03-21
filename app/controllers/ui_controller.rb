@@ -3,6 +3,8 @@ class UiController < ApplicationController
     redirect_to :root if Rails.env.production?
   end
 
+  skip_before_action :require_login
+
   layout "application"
 
   def index

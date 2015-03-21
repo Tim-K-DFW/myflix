@@ -1,5 +1,5 @@
-def set_up_session
-  user = Fabricate(:user)
+def set_up_session(*user_arg)
+  user = user_arg[0] || Fabricate(:user)
   session[:user_id] = user.id
 end
 
@@ -9,4 +9,17 @@ end
 
 def clear_session
   session[:user_id] = nil
+end
+
+def login(*user_arg)
+  user = user_arg[0] || Fabricate(:user)
+  visit '/'
+  click_link 'Sign In'
+  fill_in :email, with: user.email
+  fill_in :password, with: user.password
+  click_button 'Sign In'
+end
+
+def click_video_on_homepage(video)
+  click_link("video_#{video.id}_link")
 end

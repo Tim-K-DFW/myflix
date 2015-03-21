@@ -10,6 +10,9 @@ Myflix::Application.routes.draw do
   end
   resources :categories, only: [:create, :new, :show]
 
+  get '/people', to: 'followings#index'
+  resources :followings, only: [:create, :destroy]
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
@@ -23,6 +26,3 @@ Myflix::Application.routes.draw do
   post '/queue/', to: 'lines#update', as: 'update_queue'
 
 end
-
-
-  # manual routes for queue items to keep the urls pretty (i.e. 'queue' instead of 'queue_items')
