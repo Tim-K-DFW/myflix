@@ -1,6 +1,7 @@
-# test - form mac and then git via Nitro
 source 'https://rubygems.org'
-ruby '2.1.1'
+ruby '2.2.0'
+
+gem 'eventmachine', :git => 'git://github.com/eventmachine/eventmachine.git', :branch => 'master'
 
 gem 'bootstrap-sass'
 gem 'bootstrap_form'

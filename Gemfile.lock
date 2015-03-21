@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/eventmachine/eventmachine.git
+  revision: 6dbdb97bada05d33a1f0d469a49d8c46ac2e77d0
+  branch: master
+  specs:
+    eventmachine (1.0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -58,7 +65,6 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    eventmachine (1.0.0)
     execjs (2.0.2)
     fabrication (2.12.2)
     faker (1.4.3)
@@ -187,6 +193,7 @@ DEPENDENCIES
   capybara
   coffee-rails
   database_cleaner (= 1.2.0)
+  eventmachine!
   fabrication
   faker
   figaro
