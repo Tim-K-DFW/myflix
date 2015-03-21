@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def create  # form will submit here
+  def create
     @user = User.new(get_params)
     if @user.save
       AppMailer.send_welcome_message(@user).deliver
