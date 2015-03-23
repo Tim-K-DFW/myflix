@@ -14,11 +14,10 @@ feature 'user sees other users profile' do
     Line.create(user: pete, video: blackhawk, priority: 2)
     login(jimmy)
     click_video_on_homepage(futurama)
-    # click_link('Pete')
+    click_link('Pete')
   end
 
   scenario 'user sees number of videos in queue' do
-    binding.pry
     expect(page).to have_content("video collections (#{pete.lines.count})")
   end
 
