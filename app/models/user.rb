@@ -24,4 +24,10 @@ class User < ActiveRecord::Base
   def can_follow?(another_user)
     !follows?(another_user) && self != another_user
   end
+
+  def generate_reset_link
+    token = SecureRandom.urlsafe_base64
+    self.update(token: token)
+    '/reset_password/' + self.token
+  end
 end

@@ -95,4 +95,28 @@ describe UsersController do
       end
     end # without authenticated user
   end # GET show
+
+  describe 'POST send_reset_link' do
+    it 'generates error message when submitted email address not found in database' do
+      pete = Fabricate(:user, email: 'pete@pete.com')
+      post :send_reset_link, user: { email: 'wrong@email.com' }
+      expect(flash[:danger]).to eq('If you forgot your email address as well, you can register again.')
+    end
+
+    context 'when email address found in database' do
+      let!(:pete) { Fabricate(:user) }
+      before { post :send_reset_link, user: { email: pete.email } }
+
+      it 'sends email to correct user' do
+        expect(ActionMailer::Base.deliveries.last.to).to eq([pete.email])
+      end
+
+      it 'generates a token' do
+        expect(pete.token).not_to be_nil
+      end
+
+      it 'sends email with the token'
+      it 'renders confirmation page'
+    end
+  end
 end

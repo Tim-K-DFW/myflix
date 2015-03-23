@@ -35,7 +35,20 @@ describe 'User' do
       pete = Fabricate(:user)
       expect(pete.can_follow?(pete)).to be_falsey
     end
+  end
 
+  describe '#generate_reset_link' do
+    let(:pete) { Fabricate(:user) }
+
+    it 'updates token attribute' do
+      pete.generate_reset_link
+      expect(pete.token).not_to be_nil
+    end
+
+    it 'returns url with token' do
+      result = pete.generate_reset_link
+      expect(result).to match(/\/reset_password\/#{pete.token}/)
+    end
   end
 
 end
