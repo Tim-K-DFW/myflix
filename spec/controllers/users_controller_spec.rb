@@ -52,7 +52,28 @@ describe UsersController do
       it 'renders new template' do
         expect(response).to render_template(:new)
       end
-    end 
+    end
+
+    context 'sending welcome email' do
+
+      it 'sends welcome message' do
+        post 'create', user: Fabricate.attributes_for(:user)
+        expect(ActionMailer::Base.deliveries).not_to be_empty
+      end
+
+      it 'sends welcome message to correct recepient' do
+        attributes = Fabricate.attributes_for(:user)
+        post 'create', user: attributes
+        message = ActionMailer::Base.deliveries.last
+        expect(message.to.first).to eq(attributes[:email])
+      end
+
+      it 'sends welcome message with correct text' do
+        post 'create', user: Fabricate.attributes_for(:user)
+        message = ActionMailer::Base.deliveries.last
+        expect(message.body).to match(/still fake/)
+      end
+    end
   end
 
   describe 'GET show' do
