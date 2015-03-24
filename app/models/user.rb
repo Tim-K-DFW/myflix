@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true, length: {minimum: 4}
-  validates :password, presence: true, length: {minimum: 3}
+  # validates :password, presence: true, length: {minimum: 3}
   validates :email, presence: true, length: {minimum: 3}
   has_secure_password validations: false
   has_many :reviews
@@ -25,9 +25,9 @@ class User < ActiveRecord::Base
     !follows?(another_user) && self != another_user
   end
 
-  def generate_reset_link
+  def generate_reset_link(scheme=nil, host=nil)
     token = SecureRandom.urlsafe_base64
     self.update(token: token)
-    '/reset_password/' + self.token
+    "#{scheme}:/#{host}/reset_password/#{self.token}"
   end
 end

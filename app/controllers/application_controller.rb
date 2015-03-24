@@ -22,5 +22,4 @@ class ApplicationController < ActionController::Base
       redirect_to register_path
     end
   end
-
 end
