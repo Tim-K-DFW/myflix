@@ -154,31 +154,45 @@ describe UsersController do
   describe 'POST reset_password' do
     let!(:pete) { Fabricate(:user) }
     let!(:old_password) { pete.password_digest }
-    before do
+    
+
+    it 'finds correct user record by token' do
       pete.generate_reset_link
       post :reset_password, token: pete.token, password: '999'
       pete.reload
-    end
-
-    it 'finds correct user record by token' do
       expect(assigns(:user)).to eq(pete)
     end
 
-    it 'updates password attribute' do
-      new_password = pete.password_digest
-      expect(new_password).not_to eq(old_password)
-    end
+    context 'with valid token' do
+      before do
+        pete.generate_reset_link
+        post :reset_password, token: pete.token, password: '999'
+        pete.reload
+      end
 
-    it 'clears token attribute' do
-      expect(pete.token).to be_nil
-    end
+      it 'updates password attribute' do
+        new_password = pete.password_digest
+        expect(new_password).not_to eq(old_password)
+      end
 
-    it 'generates flash message' do
-      expect(flash[:info]).to eq('You have successfully reset your password.')
-    end
+      it 'clears token attribute' do
+        expect(pete.token).to be_nil
+      end
 
-    it 'redirects to sign in page' do
-      expect(response).to redirect_to(login_path)
-    end
+      it 'generates flash message' do
+        expect(flash[:success]).to eq('You have successfully reset your password.')
+      end
+
+      it 'redirects to sign in page' do
+        expect(response).to redirect_to(login_path)
+      end
+    end # with valid token
+
+    context 'with invalid token' do
+      it 'renders invalid token page' do
+        post :reset_password, token: 'wrong token', password: '999'
+        expect(response).to render_template('invalid_token')
+      end
+    end # with invalid token
   end
 end

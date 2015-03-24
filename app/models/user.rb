@@ -28,6 +28,6 @@ class User < ActiveRecord::Base
   def generate_reset_link(scheme=nil, host=nil)
     token = SecureRandom.urlsafe_base64
     self.update(token: token)
-    "#{scheme}:/#{host}/reset_password/#{self.token}"
+    "#{scheme}://#{host}/reset_password/#{self.token}"
   end
 end

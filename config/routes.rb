@@ -27,6 +27,6 @@ Myflix::Application.routes.draw do
 
   get '/forgot_password', to: 'users#request_reset'
   post '/send_reset_link', to: 'users#send_reset_link'
-  get '/reset_password/:token', to: 'users#enter_new_password'
+  get '/reset_password/:token', to: 'users#enter_new_password', as: 'reset_link'
   post 'reset_password', to: 'users#reset_password'
 end

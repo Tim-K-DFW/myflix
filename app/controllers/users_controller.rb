@@ -50,10 +50,14 @@ class UsersController < ApplicationController
 
   def reset_password
     @user = User.where(token: params[:token]).first
-    @user.update(password: params[:password])
-    @user.update(token: nil)
-    flash[:info] = 'You have successfully reset your password.'
-    redirect_to login_path
+    if @user
+      @user.update(password: params[:password])
+      @user.update(token: nil)
+      flash[:success] = 'You have successfully reset your password.'
+      redirect_to login_path
+    else
+      render 'invalid_token'
+    end
   end
 
   private
