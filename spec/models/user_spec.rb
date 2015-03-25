@@ -37,17 +37,12 @@ describe 'User' do
     end
   end
 
-  describe '#generate_reset_link' do
+  describe '#generate_token' do
     let(:pete) { Fabricate(:user) }
 
     it 'updates token attribute' do
-      pete.generate_reset_link
+      pete.generate_token
       expect(pete.token).not_to be_nil
-    end
-
-    it 'returns url with token' do
-      result = pete.generate_reset_link
-      expect(result).to match(/\/reset_password\/#{pete.token}/)
     end
   end
 

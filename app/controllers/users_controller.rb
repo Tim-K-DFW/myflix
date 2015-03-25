@@ -28,10 +28,8 @@ class UsersController < ApplicationController
   def send_reset_link
     user = User.where(email: params[:email]).first
     if user
-      scheme = request.env['rack.url_scheme']
-      host = request.env['HTTP_HOST']
-      link = user.generate_reset_link(scheme, host)
-      AppMailer.send_password_reset_link(user, link).deliver
+      token = user.generate_token
+      AppMailer.send_password_reset_link(user, token).deliver
       render 'confirm_password_reset'
     else
       flash[:danger] = 'If you forgot your email address as well, you can register again.'

@@ -133,7 +133,7 @@ describe UsersController do
 
   describe 'GET enter_new_password' do
     let!(:pete) { Fabricate(:user) }
-    before { pete.generate_reset_link }
+    before { pete.generate_token }
 
     it 'finds user by token in the url' do
       get :enter_new_password, token: pete.token
@@ -157,7 +157,7 @@ describe UsersController do
     
 
     it 'finds correct user record by token' do
-      pete.generate_reset_link
+      pete.generate_token
       post :reset_password, token: pete.token, password: '999'
       pete.reload
       expect(assigns(:user)).to eq(pete)
@@ -165,7 +165,7 @@ describe UsersController do
 
     context 'with valid token' do
       before do
-        pete.generate_reset_link
+        pete.generate_token
         post :reset_password, token: pete.token, password: '999'
         pete.reload
       end

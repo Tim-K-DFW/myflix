@@ -5,7 +5,6 @@
         %header
           %img(src="/tmp/avatar_pete.png")
           %h2 #{@user.username}'s video collections (#{@user.lines.size})
-          / = button_to 'Follow', {action: 'create', controller: 'followings'}, params: {id: @user.id}, class: 'btn btn-default'
           = link_to 'Follow', followings_path(id: @user.id), method: :post, class:'btn btn-default' if current_user.can_follow?(@user)
         %table.table
           %thead
