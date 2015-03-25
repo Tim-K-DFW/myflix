@@ -25,4 +25,8 @@ Myflix::Application.routes.draw do
   delete '/queue/:id', to: 'lines#destroy', as: 'remove_queue_item'
   post '/queue/', to: 'lines#update', as: 'update_queue'
 
+  get '/forgot_password', to: 'users#request_reset'
+  post '/send_reset_link', to: 'users#send_reset_link'
+  get '/reset_password/:token', to: 'users#enter_new_password', as: 'reset_link'
+  post 'reset_password', to: 'users#reset_password'
 end

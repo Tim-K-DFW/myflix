@@ -55,6 +55,7 @@ describe UsersController do
     end
 
     context 'sending welcome email' do
+      after { ActionMailer::Base.deliveries.clear }
 
       it 'sends welcome message' do
         post 'create', user: Fabricate.attributes_for(:user)
@@ -95,4 +96,103 @@ describe UsersController do
       end
     end # without authenticated user
   end # GET show
+
+  describe 'POST send_reset_link' do
+    after { ActionMailer::Base.deliveries.clear }
+
+    it 'generates error message when submitted email address not found in database' do
+      pete = Fabricate(:user, email: 'pete@pete.com')
+      post :send_reset_link, user: { email: 'wrong@email.com' }
+      expect(flash[:danger]).to eq('If you forgot your email address as well, you can register again.')
+    end
+
+    context 'when email address found in database' do
+      let!(:pete) { Fabricate(:user) }
+      before { post :send_reset_link, email: pete.email }
+
+      it 'sends email to correct user' do
+        expect(ActionMailer::Base.deliveries.last.to).to eq([pete.email])
+      end
+
+      it 'generates a token' do
+        pete.reload
+        expect(pete.token).not_to be_nil
+      end
+
+      it 'sends email with the token' do
+        pete.reload
+        message = ActionMailer::Base.deliveries.last.body
+        expect(message).to include(pete.token)
+      end
+
+      it 'renders confirmation page' do
+        expect(response).to render_template('confirm_password_reset')
+      end
+    end
+  end
+
+  describe 'GET enter_new_password' do
+    let!(:pete) { Fabricate(:user) }
+    before { pete.generate_token }
+
+    it 'finds user by token in the url' do
+      get :enter_new_password, token: pete.token
+      expect(assigns(:user)).to eq(pete)
+    end
+
+    it 'renders new password form if user found' do
+      get :enter_new_password, token: pete.token
+      expect(response).to render_template('new_password_entry')
+    end
+
+    it 'renders token expired page if user not found' do
+      get :enter_new_password, token: 'wrong_token'
+      expect(response).to render_template('invalid_token')
+    end
+  end
+
+  describe 'POST reset_password' do
+    let!(:pete) { Fabricate(:user) }
+    let!(:old_password) { pete.password_digest }
+    
+
+    it 'finds correct user record by token' do
+      pete.generate_token
+      post :reset_password, token: pete.token, password: '999'
+      pete.reload
+      expect(assigns(:user)).to eq(pete)
+    end
+
+    context 'with valid token' do
+      before do
+        pete.generate_token
+        post :reset_password, token: pete.token, password: '999'
+        pete.reload
+      end
+
+      it 'updates password attribute' do
+        new_password = pete.password_digest
+        expect(new_password).not_to eq(old_password)
+      end
+
+      it 'clears token attribute' do
+        expect(pete.token).to be_nil
+      end
+
+      it 'generates flash message' do
+        expect(flash[:success]).to eq('You have successfully reset your password.')
+      end
+
+      it 'redirects to sign in page' do
+        expect(response).to redirect_to(login_path)
+      end
+    end # with valid token
+
+    context 'with invalid token' do
+      it 'renders invalid token page' do
+        post :reset_password, token: 'wrong token', password: '999'
+        expect(response).to render_template('invalid_token')
+      end
+    end # with invalid token
+  end
 end

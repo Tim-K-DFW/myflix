@@ -35,7 +35,15 @@ describe 'User' do
       pete = Fabricate(:user)
       expect(pete.can_follow?(pete)).to be_falsey
     end
+  end
 
+  describe '#generate_token' do
+    let(:pete) { Fabricate(:user) }
+
+    it 'updates token attribute' do
+      pete.generate_token
+      expect(pete.token).not_to be_nil
+    end
   end
 
 end
