@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150326002257) do
     t.integer  "user_id"
     t.string   "friend_email"
     t.string   "friend_name"
+    t.string   "token"
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
