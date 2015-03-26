@@ -29,4 +29,8 @@ Myflix::Application.routes.draw do
   post '/send_reset_link', to: 'users#send_reset_link'
   get '/reset_password/:token', to: 'users#enter_new_password', as: 'reset_link'
   post 'reset_password', to: 'users#reset_password'
+
+  get '/invite', to: 'invitations#new', as: 'new_invitation'
+  post '/invite', to: 'invitations#create', as: 'invitations'
+  get '/accept_invite/:token', to: 'invitations#accept', as: 'accept_invite'
 end
