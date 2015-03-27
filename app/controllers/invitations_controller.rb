@@ -1,4 +1,5 @@
 class InvitationsController < ApplicationController
+  skip_before_action :require_login, only: :accept
 
   def new
     @invitation = Invitation.new
