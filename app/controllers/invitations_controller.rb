@@ -24,6 +24,18 @@ class InvitationsController < ApplicationController
     end
   end
 
+  def accept
+    @invitation = Invitation.find_by_token(params[:token])
+    if @invitation
+      @user = User.new
+      @user.email = @invitation.friend_email
+      @user.username = @invitation.friend_name
+      render 'users/new'
+    else
+      render 'invalid_invitation'
+    end
+  end
+
   private
 
   def get_params

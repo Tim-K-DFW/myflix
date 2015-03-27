@@ -55,8 +55,6 @@ describe InvitationsController do
         expect(flash[:success]).to eq("Invitation to #{assigns(:invitation).friend_name} has been sent successfully.")
       end
 
-
-
       it 'redirects to home page' do
         expect(response).to redirect_to(home_path)
       end
@@ -107,4 +105,39 @@ describe InvitationsController do
       let(:action) { post :create }
     end
   end
+
+  describe 'GET accept' do
+    context 'with valid link' do
+      it 'pulls invitation record' do
+        invitation = Fabricate(:invitation)
+        invitation.generate_token
+        invitation.user = current_user
+        get :accept, token: invitation.token
+        expect(assigns(:invitation)).to eq(invitation)
+      end
+
+      it 'creates a new user instance' do
+        invitation = Fabricate(:invitation)
+        invitation.generate_token
+        invitation.user = current_user
+        get :accept, token: invitation.token
+        expect(assigns(:user)).to be_an_instance_of(User)
+      end
+
+      it 'renders register page' do
+        invitation = Fabricate(:invitation)
+        invitation.generate_token
+        invitation.user = current_user
+        get :accept, token: invitation.token
+        expect(response).to render_template('users/new')
+      end
+    end
+
+    context 'with invalid link' do
+      it 'renders error page' do
+        get :accept, token: 'invalid'
+        expect(response).to render_template('invalid_invitation')
+      end
+    end
+  end # 'GET accept'
 end

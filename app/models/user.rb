@@ -30,4 +30,9 @@ class User < ActiveRecord::Base
     update(token: SecureRandom.urlsafe_base64)
     token
   end
+
+  def connect_with_inviter(inviter)
+    Following.create(leader: inviter, follower: self)
+    Following.create(leader: self, follower: inviter)
+  end
 end
