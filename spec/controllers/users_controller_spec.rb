@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe UsersController do
+  after { ActionMailer::Base.deliveries.clear }
 
   context 'with authenticated user' do
     before { set_up_session }
@@ -55,8 +56,6 @@ describe UsersController do
     end
 
     context 'sending welcome email' do
-      after { ActionMailer::Base.deliveries.clear }
-
       it 'sends welcome message' do
         post 'create', user: Fabricate.attributes_for(:user)
         expect(ActionMailer::Base.deliveries).not_to be_empty
@@ -75,6 +74,29 @@ describe UsersController do
         expect(message.body).to match(/still fake/)
       end
     end
+
+    context 'this user was invited' do
+      let!(:pete) { Fabricate(:user) }
+      let!(:jimmy) { Fabricate.attributes_for(:user, username: 'Jimmy34') }
+      let!(:invitation){ Fabricate(:invitation, user: pete, friend_name: jimmy[:username], friend_email: jimmy[:email], token: 'fake_token') }
+      before { post :create, user: jimmy, token: invitation.token }
+
+      it 'destroys invitation record' do
+        expect(Invitation.all.count).to eq(0)
+      end
+
+      it 'creates relation where the new user follows inviter' do
+        jimmy = User.last
+        expect(jimmy.following_relations.first.leader).to eq(pete)
+        expect(pete.leading_relations.first.follower).to eq(jimmy)
+      end
+
+      it 'creates relation where inviter follows the new user' do
+        jimmy = User.last
+        expect(pete.following_relations.first.leader).to eq(jimmy)
+        expect(jimmy.leading_relations.first.follower).to eq(pete)
+      end
+    end # this user was invited
   end
 
   describe 'GET show' do

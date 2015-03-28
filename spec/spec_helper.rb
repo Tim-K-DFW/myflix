@@ -5,6 +5,7 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'capybara/email/rspec'
 
 # load "#{Rails.root}/db/seeds.rb"
 

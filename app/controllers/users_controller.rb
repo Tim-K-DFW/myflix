@@ -14,6 +14,12 @@ class UsersController < ApplicationController
     @user = User.new(get_params)
     if @user.save
       AppMailer.send_welcome_message(@user).deliver
+      if params[:token]
+        invitation = Invitation.find_by_token(params[:token])
+        @user.follow(invitation.user)
+        invitation.user.follow(@user)
+        invitation.destroy
+      end
       session[:user_id] = @user.id
       redirect_to home_path
     else

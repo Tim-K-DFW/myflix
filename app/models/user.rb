@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :following_relations, class_name: 'Following', foreign_key: 'follower_id'
   has_many :leading_relations, class_name: 'Following', foreign_key: 'leader_id'
 
+  has_many :invitations
+
   def bump_up_queue
     users_queue = self.lines.order('priority ASC')
     (1..users_queue.size).each do |position|
@@ -27,5 +29,9 @@ class User < ActiveRecord::Base
   def generate_token
     update(token: SecureRandom.urlsafe_base64)
     token
+  end
+
+  def follow(another_user)
+    following_relations.create(leader: another_user) if can_follow?(another_user)
   end
 end

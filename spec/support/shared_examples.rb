@@ -5,3 +5,9 @@ shared_examples 'require_login' do
     expect(response).to redirect_to register_path
   end
 end
+
+shared_examples 'has_token' do
+  it 'generates a token upon creation' do
+    expect(object.token).to be_present
+  end
+end

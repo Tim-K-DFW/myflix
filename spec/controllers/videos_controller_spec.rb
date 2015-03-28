@@ -14,7 +14,7 @@ describe VideosController do
   describe 'GET show' do
     it 'finds a video by id passed in param' do
       get 'show', id: vid1.id
-      assigns(:video).should == vid1
+      expect(assigns(:video)).to eq(vid1)
     end
 
     it_behaves_like 'require_login' do
@@ -25,7 +25,7 @@ describe VideosController do
   describe 'POST search' do
     it 'assigns found videos to @videos' do
       post :search, search_term: vid1.title
-      assigns(:videos).should == [vid1]
+      expect(assigns(:videos)).to eq([vid1])
     end
     
     it_behaves_like 'require_login' do

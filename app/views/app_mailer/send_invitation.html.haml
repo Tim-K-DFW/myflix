@@ -1,0 +1,11 @@
+!!! 5
+%html(lang="en-US")
+  %head
+  %body
+    %h4 You have been invited to join MyFlix
+    %p= "#{@invitation.user.username} has invited you to join MyFlix - a great way to watch your favorite videos online! Here is what your friend wrote:"
+    %hr
+    %p= @invitation.message
+    %hr
+    %p To join, please click this link:
+    %p= link_to 'MyFlix Registration', accept_invite_url(@invitation.token)

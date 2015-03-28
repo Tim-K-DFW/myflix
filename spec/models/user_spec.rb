@@ -46,4 +46,20 @@ describe 'User' do
     end
   end
 
+  describe '#follow' do
+    
+    it 'makes user follow another user' do
+      alice = Fabricate(:user)
+      pete = Fabricate(:user)
+      alice.follow(pete)
+      expect(alice.follows?(pete)).to be_truthy
+    end
+
+    it 'does not allow a user to follow himself' do
+      alice = Fabricate(:user)
+      alice.follow(alice)
+      expect(alice.follows?(alice)).to be_falsey
+    end
+  end
+
 end
