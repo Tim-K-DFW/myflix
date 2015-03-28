@@ -10,11 +10,6 @@ describe InvitationsController do
       expect(assigns(:invitation)).to be_a_new_record
     end
 
-    it 'assigns current user to the new instance' do
-      get :new
-      expect(assigns(:invitation).user).to eq(current_user)
-    end
-
     it_behaves_like 'require_login' do
       let(:action) { get :new }
     end
@@ -107,28 +102,25 @@ describe InvitationsController do
   end
 
   describe 'GET accept' do
+    let!(:invitation) { Fabricate(:invitation, user: current_user) }
+    before { get :accept, token: invitation.token }
+
     context 'with valid link' do
       it 'pulls invitation record' do
-        invitation = Fabricate(:invitation)
-        invitation.generate_token
-        invitation.user = current_user
-        get :accept, token: invitation.token
         expect(assigns(:invitation)).to eq(invitation)
       end
 
       it 'creates a new user instance' do
-        invitation = Fabricate(:invitation)
-        invitation.generate_token
-        invitation.user = current_user
-        get :accept, token: invitation.token
         expect(assigns(:user)).to be_an_instance_of(User)
+        expect(assigns(:user)).to be_a_new_record
       end
 
-      it 'renders register page' do
-        invitation = Fabricate(:invitation)
-        invitation.generate_token
-        invitation.user = current_user
-        get :accept, token: invitation.token
+      it 'pre-fills user data based on invitation' do
+        expect(assigns(:user).email).to eq(invitation.friend_email)
+        expect(assigns(:user).username).to eq(invitation.friend_name)
+      end
+
+      it 'renders registragion page' do
         expect(response).to render_template('users/new')
       end
     end

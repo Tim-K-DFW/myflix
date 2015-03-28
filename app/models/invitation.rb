@@ -4,7 +4,9 @@ class Invitation < ActiveRecord::Base
   validates :friend_email, presence: true
   validates :message, presence: true, length: {in: 5..1000}
 
+  before_create :generate_token
+
   def generate_token
-    update(token: SecureRandom.urlsafe_base64)
+    self.token = SecureRandom.urlsafe_base64
   end
 end

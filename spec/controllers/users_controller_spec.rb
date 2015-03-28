@@ -80,7 +80,7 @@ describe UsersController do
       let!(:pete) { Fabricate(:user) }
       let!(:jimmy) { Fabricate.attributes_for(:user, username: 'Jimmy34') }
       let!(:invitation){ Fabricate(:invitation, user: pete, friend_name: jimmy[:username], friend_email: jimmy[:email], token: 'fake_token') }
-      before { post :create, user: jimmy.merge( { token: invitation.token } ) }
+      before { post :create, user: jimmy, token: invitation.token }
 
       it 'destroys invitation record' do
         expect(Invitation.all.count).to eq(0)

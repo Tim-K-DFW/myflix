@@ -3,7 +3,6 @@ class InvitationsController < ApplicationController
 
   def new
     @invitation = Invitation.new
-    @invitation.user = current_user
   end
 
   def create
@@ -14,7 +13,6 @@ class InvitationsController < ApplicationController
       @invitation = Invitation.new(get_params)
       @invitation.user = current_user
       if @invitation.save
-        @invitation.generate_token
         AppMailer.send_invitation(@invitation).deliver
         flash[:success] = "Invitation to #{@invitation.friend_name} has been sent successfully."
         redirect_to home_path

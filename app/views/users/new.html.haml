@@ -4,7 +4,7 @@
       = bootstrap_form_for @user, html: {class: 'form-horizontal'} do |f|
         %header
           %h1 Register
-          = f.hidden_field :token, value: @invitation.token if @invitation
+          = hidden_field_tag :token, @invitation.token if @invitation
         %fieldset
           .form-group
             = f.label 'Email Address', class: 'control-label col-sm-2'

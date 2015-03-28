@@ -31,8 +31,7 @@ class User < ActiveRecord::Base
     token
   end
 
-  def connect_with_inviter(inviter)
-    Following.create(leader: inviter, follower: self)
-    Following.create(leader: self, follower: inviter)
+  def follow(another_user)
+    following_relations.create(leader: another_user) if can_follow?(another_user)
   end
 end

@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 feature 'a person registers with an invitation from a current user' do
-  before { login(Fabricate(:user, username: 'Alice')) }
+  let!(:alice){ Fabricate(:user, username: 'Alice') }
+  before { login(alice) }
+  after { clear_email }
 
   scenario 'current user sends an invitation' do
     click_link('Invite')
@@ -30,5 +32,10 @@ feature 'a person registers with an invitation from a current user' do
 
     click_link('People')
     expect(page).to have_content('Alice')
+
+    click_link('Sign Out')
+    login(alice)
+    click_link('People')
+    expect(page).to have_content('Peter')
   end
 end
