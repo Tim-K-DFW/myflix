@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe InvitationsController do
   before { set_up_session }
+  after { ActionMailer::Base.deliveries.clear }
 
   describe 'GET new' do
     it 'creates a new instance of invitation' do
@@ -16,8 +17,6 @@ describe InvitationsController do
   end
 
   describe 'POST create' do
-    after { ActionMailer::Base.deliveries.clear }
-
     context 'with valid input' do
       let!(:fake_params) { Fabricate.attributes_for(:invitation) }
       before { post :create, invitation: fake_params }

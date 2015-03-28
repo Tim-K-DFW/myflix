@@ -5,12 +5,7 @@ describe Invitation do
   it { is_expected.to validate_presence_of(:friend_email) }
   it { is_expected.to validate_presence_of(:message) }
 
-  describe '#generate_token' do
-    let(:invitation) { Fabricate(:invitation) }
-
-    it 'creates token attribute' do
-      invitation.generate_token
-      expect(invitation.token).not_to be_nil
-    end
+  it_behaves_like 'has_token' do
+    let(:object) { Fabricate(:invitation) }
   end
 end

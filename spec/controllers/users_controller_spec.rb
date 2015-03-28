@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe UsersController do
+  after { ActionMailer::Base.deliveries.clear }
 
   context 'with authenticated user' do
     before { set_up_session }
@@ -55,8 +56,6 @@ describe UsersController do
     end
 
     context 'sending welcome email' do
-      after { ActionMailer::Base.deliveries.clear }
-
       it 'sends welcome message' do
         post 'create', user: Fabricate.attributes_for(:user)
         expect(ActionMailer::Base.deliveries).not_to be_empty
