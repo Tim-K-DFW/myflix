@@ -7,6 +7,7 @@ class InvitationsController < ApplicationController
 
   def create
     if params[:invitation][:friend_email] == current_user.email
+      @invitation = Invitation.new
       flash[:danger] = 'You cannot send an invitation to yourself.'
       render 'new'
     else
