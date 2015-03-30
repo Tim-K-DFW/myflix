@@ -15,6 +15,10 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'fabrication'
 gem 'faker'
 gem 'figaro'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+gem 'unicorn'
 
 group :development do
   gem 'thin'

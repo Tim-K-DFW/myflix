@@ -13,7 +13,7 @@ class InvitationsController < ApplicationController
       @invitation = Invitation.new(get_params)
       @invitation.user = current_user
       if @invitation.save
-        AppMailer.send_invitation(@invitation).deliver
+        AppMailer.delay.send_invitation(@invitation)
         flash[:success] = "Invitation to #{@invitation.friend_name} has been sent successfully."
         redirect_to home_path
       else

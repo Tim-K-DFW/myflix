@@ -6,6 +6,8 @@ require 'shoulda/matchers'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/email/rspec'
+require 'sidekiq/testing'
+Sidekiq::Testing.inline!
 
 # load "#{Rails.root}/db/seeds.rb"
 

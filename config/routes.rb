@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Myflix::Application.routes.draw do
   get 'ui(/:action)', controller: 'ui'
 
@@ -33,4 +35,6 @@ Myflix::Application.routes.draw do
   get '/invite', to: 'invitations#new', as: 'new_invitation'
   post '/invite', to: 'invitations#create', as: 'invitations'
   get '/accept_invite/:token', to: 'invitations#accept', as: 'accept_invite'
+
+  mount Sidekiq::Web, at: "/sidekiq"  
 end
