@@ -1,0 +1,19 @@
+machine:
+  ruby:
+    version: 2.1.5
+deployment:
+  production:
+    branch: master
+    commands:
+      - heroku maintenance:on --app production_app_name
+      - heroku pg:backups capture --app production_app_name
+      - git push git@heroku.com:production_app_name.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app production_app_name
+      - heroku maintenance:off --app production_app_name
+  staging:
+    branch: staging
+    commands:
+      - heroku maintenance:on --app staging_app_name
+      - git push git@heroku.com:staging_app_name.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app staging_app_name
+      - heroku maintenance:off --app staging_app_name
