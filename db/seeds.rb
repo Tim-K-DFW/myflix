@@ -11,6 +11,7 @@ Category.create(name: 'Documentary')
 
 pete = User.create(username: 'Pete', email: '1@1.com', password: '123')
 mike = User.create(username: 'Mike', email: '2@1.com', password: '123')
+admin = User.create(username: 'admin', email: '3@3.com', password: '123', admin: true)
 
 dummy1 = Fabricate(:user)
 dummy2 = Fabricate(:user)
