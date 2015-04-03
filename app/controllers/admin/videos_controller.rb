@@ -12,7 +12,7 @@ class Admin::VideosController < ApplicationController
       @video.large_cover_url = @video.large_cover_upload.filename
       @video.save
       flash[:success] = 'Video was added successfully.'
-      redirect_to home_path
+      redirect_to new_admin_video_path
     else
       flash[:danger] = 'There was an error. Try again.'
       render :new
@@ -22,7 +22,6 @@ class Admin::VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:category_id, :description, :title, :small_cover_upload, :large_cover_upload)
+    params.require(:video).permit(:category_id, :description, :title, :small_cover_upload, :large_cover_upload, :url)
   end
-  
 end

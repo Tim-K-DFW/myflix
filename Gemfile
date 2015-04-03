@@ -22,8 +22,8 @@ gem 'slim'
 gem 'unicorn'
 gem 'sentry-raven'
 gem 'mini_magick'
-gem 'fog-aws'
 gem 'fog'
+gem 'fog-aws'
 gem 'carrierwave'
 
 group :development do

@@ -9,7 +9,7 @@
           %span Rating: #{@video.average_score}/5.0
         %p= @video.description
         .actions
-          %a.btn.btn-primary(href="") Watch Now
+          = link_to 'Watch Now', @video.url, class: 'btn btn-primary'
           = link_to '+ My Queue', add_2_queue_path(id: @video.id), method: 'post', class: 'btn btn-default' unless !Line.where(user: current_user, video: @video).blank?
 %section.reviews.container
   .row
