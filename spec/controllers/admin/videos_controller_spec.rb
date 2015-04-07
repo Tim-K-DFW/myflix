@@ -5,8 +5,7 @@ describe Admin::VideosController do
     it 'assigns new instance of Video to @video' do
       set_up_admin_session
       get :new
-      expect(assigns(:video)).to be_an_instance_of(Video)
-      expect(assigns(:video)).to be_a_new_record
+      expect(assigns(:video)).to be_a_new(Video)
     end
 
     it_behaves_like 'require_admin' do
