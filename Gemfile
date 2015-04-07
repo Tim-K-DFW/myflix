@@ -21,6 +21,10 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'unicorn'
 gem 'sentry-raven'
+gem 'mini_magick'
+gem 'fog'
+gem 'fog-aws'
+gem 'carrierwave'
 
 group :development do
   gem 'thin'

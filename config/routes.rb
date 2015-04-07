@@ -36,5 +36,9 @@ Myflix::Application.routes.draw do
   post '/invite', to: 'invitations#create', as: 'invitations'
   get '/accept_invite/:token', to: 'invitations#accept', as: 'accept_invite'
 
+  namespace :admin do
+    resources :videos, only: [:new, :create]
+  end
+
   mount Sidekiq::Web, at: "/sidekiq"  
 end

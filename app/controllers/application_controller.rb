@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :logged_in?, :current_user
+  helper_method :logged_in?, :current_user, :require_admin
   before_action :require_login
 
 
@@ -18,8 +18,15 @@ class ApplicationController < ActionController::Base
 
   def require_login
     if !logged_in?
-      flash[:danger] = 'This section is for member only. Please register to become one.'
+      flash[:danger] = 'This section is for members only. Please register to become one.'
       redirect_to register_path
+    end
+  end
+
+  def require_admin
+    if !current_user.admin?
+      flash[:danger] = 'You need admin access to do this.'
+      redirect_to home_path
     end
   end
 end
