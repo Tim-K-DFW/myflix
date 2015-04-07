@@ -2,14 +2,14 @@
   .container
     .row
       .video_large_cover.col-sm-7.col-sm-offset-1
-        %img(src="/tmp/#{@video.large_cover_url}")
+        =image_tag "/tmp/#{@video.large_cover_url}"
       .video_info.col-sm-3
         %header
           %h3= @video.title
           %span Rating: #{@video.average_score}/5.0
         %p= @video.description
         .actions
-          %a.btn.btn-primary(href="") Watch Now
+          = link_to 'Watch Now', @video.url, class: 'btn btn-primary'
           = link_to '+ My Queue', add_2_queue_path(id: @video.id), method: 'post', class: 'btn btn-default' unless !Line.where(user: current_user, video: @video).blank?
 %section.reviews.container
   .row
