@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(get_params)
     if @user.valid?
 
-      Stripe.api_key = ENV['stripe_api_key']  
+      Stripe.api_key = ENV['stripe_api_key']
       token = params[:stripeToken]
       begin
         charge = Stripe::Charge.create(
