@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
       @user.save
       AppMailer.send_welcome_message(@user).deliver
-      handle_invitation(params) if params[:invitation_token]
+      handle_invitation if params[:invitation_token]
       flash[:success] = 'You have successfully signed up. Welcome to MyFlix, and enjoy the movies!'
       session[:user_id] = @user.id
       redirect_to home_path
@@ -79,10 +79,10 @@ class UsersController < ApplicationController
   private
 
   def get_params
-    params.require(:user).permit!
+    params.require(:user).permit(:email, :password, :username)
   end
 
-  def handle_invitation(params)
+  def handle_invitation
     invitation = Invitation.find_by_token(params[:invitation_token])
     @user.follow(invitation.user)
     invitation.user.follow(@user)
