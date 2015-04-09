@@ -12,14 +12,26 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(get_params)
-    if @user.save
-      AppMailer.send_welcome_message(@user).deliver
-      if params[:token]
-        invitation = Invitation.find_by_token(params[:token])
-        @user.follow(invitation.user)
-        invitation.user.follow(@user)
-        invitation.destroy
+    if @user.valid?
+
+      Stripe.api_key = ENV['stripe_api_key']
+      token = params[:stripeToken]
+      begin
+        charge = Stripe::Charge.create(
+          :amount => 999,
+          :currency => "usd",
+          :source => token,
+          :description => "sign-up fee for #{params[:user][:email]}"
+        )
+      rescue Stripe::CardError => e
+        flash[:danger] = "Your card has been declined: #{e}. Please try again."
+        render 'new' and return
       end
+
+      @user.save
+      AppMailer.send_welcome_message(@user).deliver
+      handle_invitation(params) if params[:invitation_token]
+      flash[:success] = 'You have successfully signed up. Welcome to MyFlix, and enjoy the movies!'
       session[:user_id] = @user.id
       redirect_to home_path
     else
@@ -68,5 +80,12 @@ class UsersController < ApplicationController
 
   def get_params
     params.require(:user).permit!
+  end
+
+  def handle_invitation(params)
+    invitation = Invitation.find_by_token(params[:invitation_token])
+    @user.follow(invitation.user)
+    invitation.user.follow(@user)
+    invitation.destroy
   end
 end

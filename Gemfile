@@ -25,6 +25,7 @@ gem 'mini_magick'
 gem 'fog'
 gem 'fog-aws'
 gem 'carrierwave'
+gem 'stripe'
 
 group :development do
   gem 'thin'
