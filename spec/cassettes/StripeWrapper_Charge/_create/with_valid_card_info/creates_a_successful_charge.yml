@@ -1,0 +1,210 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/tokens
+    body:
+      encoding: US-ASCII
+      string: card[number]=4242424242424242&card[exp_month]=5&card[exp_year]=2018&card[cvc]=123
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.20.4
+      Authorization:
+      - Bearer sk_test_nsVsYy52JP4PgGyO5gnJYJv8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.20.4","lang":"ruby","lang_version":"2.0.0 p598 (2014-11-13)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        supersonic-ghost-34-172996 3.13.4 #1 SMP Thu Mar 6 03:42:38 UTC 2014 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+      Content-Length:
+      - '81'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 10 Apr 2015 13:43:05 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '726'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_X1zdwtpxh7HZoCcc
+      Stripe-Version:
+      - '2015-03-24'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "tok_15q2PUBYANZ2AhsmRTTuJnft",
+          "livemode": false,
+          "created": 1428673384,
+          "used": false,
+          "object": "token",
+          "type": "card",
+          "card": {
+            "id": "card_15q2PUBYANZ2AhsmI9MKHxMj",
+            "object": "card",
+            "last4": "4242",
+            "brand": "Visa",
+            "funding": "credit",
+            "exp_month": 5,
+            "exp_year": 2018,
+            "fingerprint": "Z9AjS2ZYDjKqxwaU",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "cvc_check": "unchecked",
+            "address_line1_check": null,
+            "address_zip_check": null,
+            "dynamic_last4": null
+          },
+          "client_ip": "54.215.6.163"
+        }
+    http_version: 
+  recorded_at: Fri, 10 Apr 2015 13:43:05 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/charges
+    body:
+      encoding: US-ASCII
+      string: amount=999&currency=usd&source=tok_15q2PUBYANZ2AhsmRTTuJnft&description=test
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.20.4
+      Authorization:
+      - Bearer sk_test_nsVsYy52JP4PgGyO5gnJYJv8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.20.4","lang":"ruby","lang_version":"2.0.0 p598 (2014-11-13)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        supersonic-ghost-34-172996 3.13.4 #1 SMP Thu Mar 6 03:42:38 UTC 2014 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+      Content-Length:
+      - '76'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 10 Apr 2015 13:43:05 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1369'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_Zsvbj8gp7nzmzVTj
+      Stripe-Version:
+      - '2015-03-24'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "ch_15q2PVBYANZ2AhsmO9913u6Z",
+          "object": "charge",
+          "created": 1428673385,
+          "livemode": false,
+          "paid": true,
+          "status": "succeeded",
+          "amount": 999,
+          "currency": "usd",
+          "refunded": false,
+          "source": {
+            "id": "card_15q2PUBYANZ2AhsmI9MKHxMj",
+            "object": "card",
+            "last4": "4242",
+            "brand": "Visa",
+            "funding": "credit",
+            "exp_month": 5,
+            "exp_year": 2018,
+            "fingerprint": "Z9AjS2ZYDjKqxwaU",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "cvc_check": "pass",
+            "address_line1_check": null,
+            "address_zip_check": null,
+            "dynamic_last4": null,
+            "metadata": {},
+            "customer": null
+          },
+          "captured": true,
+          "balance_transaction": "txn_15q2PVBYANZ2AhsmRoCqD6KJ",
+          "failure_message": null,
+          "failure_code": null,
+          "amount_refunded": 0,
+          "customer": null,
+          "invoice": null,
+          "description": "test",
+          "dispute": null,
+          "metadata": {},
+          "statement_descriptor": null,
+          "fraud_details": {},
+          "receipt_email": null,
+          "receipt_number": null,
+          "shipping": null,
+          "application_fee": null,
+          "refunds": {
+            "object": "list",
+            "total_count": 0,
+            "has_more": false,
+            "url": "/v1/charges/ch_15q2PVBYANZ2AhsmO9913u6Z/refunds",
+            "data": []
+          }
+        }
+    http_version: 
+  recorded_at: Fri, 10 Apr 2015 13:43:05 GMT
+recorded_with: VCR 2.9.3
