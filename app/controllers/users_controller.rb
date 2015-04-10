@@ -14,17 +14,14 @@ class UsersController < ApplicationController
     @user = User.new(get_params)
     if @user.valid?
 
-      Stripe.api_key = ENV['stripe_api_key']
       token = params[:stripeToken]
-      begin
-        charge = Stripe::Charge.create(
-          :amount => 999,
-          :currency => "usd",
-          :source => token,
-          :description => "sign-up fee for #{params[:user][:email]}"
-        )
-      rescue Stripe::CardError => e
-        flash[:danger] = "Your card has been declined: #{e}. Please try again."
+      charge = StripeWrapper::Charge.create(
+        amount: 999,
+        token: token,
+        description: "sign-up fee for #{params[:user][:email]}"
+      )
+      if !charge.successful?
+        flash[:danger] = "Your card has been declined: #{charge.error_message} Please try again."
         render 'new' and return
       end
 
