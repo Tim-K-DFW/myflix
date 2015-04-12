@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'a person registers with an invitation from a current user', { vcr: false, js: false } do
+feature 'a person registers with an invitation from a current user', { vcr: true, js: true } do
   let!(:alice){ Fabricate(:user, username: 'Alice') }
   before { login(alice) }
   after { clear_email }
@@ -21,7 +21,6 @@ feature 'a person registers with an invitation from a current user', { vcr: fals
     click_link('Welcome, Alice!')
     click_link('Sign Out')
 
-    binding.pry
     open_email('fake@email.com')
     current_email.click_link('MyFlix Registration')
     expect(page).to have_content('Register')

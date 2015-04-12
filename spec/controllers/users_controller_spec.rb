@@ -32,7 +32,7 @@ describe UsersController do
         expect(assigns(:user).email).to eq(attributes[:email])
     end
 
-    context 'new user is valid' do
+    context 'user personal data is valid and card is valid' do
       before { post 'create', user: Fabricate.attributes_for(:user) }
       
       it 'sets up session' do
@@ -53,8 +53,17 @@ describe UsersController do
       end
     end
 
-    context 'new user is invalid' do
+    context 'user personal data is invalid' do
       before { post 'create', user: {username: 'Pete'} }
+
+      it 'does not attempt to charge users credit card' do
+        expect(StripeWrapper::Charge).not_to receive(:create)
+        post 'create', user: {username: 'Pete'}
+      end
+
+      it 'does not create new User record' do
+        expect(User.all.count).to eq(0)
+      end
 
       it 'shows error message' do
         expect(flash[:danger]).to eq('There was a problem with your input. Please fix it.')
@@ -64,6 +73,35 @@ describe UsersController do
         expect(response).to render_template(:new)
       end
     end
+
+    context 'user personal data is valid but card declined' do
+      let(:stub_respnose) { double(successful?: false, error_message: 'fake message') }
+      before do
+        allow(StripeWrapper::Charge).to receive(:create).and_return(stub_respnose)
+        post :create, user: Fabricate.attributes_for(:user)
+      end
+
+      it 'show card declined error message' do
+        expect(flash[:danger]).to match(/card has been declined/)
+      end
+
+      it 'renders new template' do
+        expect(response).to render_template(:new)
+      end
+
+      it 'attempts to charge card' do
+        expect(StripeWrapper::Charge).to receive(:create)
+        post :create, user: Fabricate.attributes_for(:user)
+      end
+
+      it 'does not create new User record' do
+        expect(User.all.count).to eq(0)
+      end
+
+      it 'does not send welcome email' do
+        expect(ActionMailer::Base.deliveries).to be_empty
+      end
+    end # context 'user personal data valid but card declined'
 
     context 'sending welcome email' do
       it 'sends welcome message' do

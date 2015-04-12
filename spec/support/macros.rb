@@ -41,6 +41,6 @@ def reset_password_flow(user)
 end
 
 def stub_out_stripe_wrapper
-  stub_respnose = double(successful?: :true)
+  stub_respnose = double(successful?: true)
   allow(StripeWrapper::Charge).to receive(:create).and_return(stub_respnose)
 end

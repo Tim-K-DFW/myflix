@@ -10,6 +10,8 @@ require 'sidekiq/testing'
 require 'vcr'
 Sidekiq::Testing.inline!
 
+Capybara.server_port = 52662
+
 # load "#{Rails.root}/db/seeds.rb"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
