@@ -1,0 +1,2104 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://127.0.0.1:51631/__identify__
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Server:
+      - WEBrick/1.3.1 (Ruby/2.0.0/2014-11-13)
+      Date:
+      - Sat, 11 Apr 2015 23:12:33 GMT
+      Content-Length:
+      - '14'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '70299691407700'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:33 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session
+    body:
+      encoding: UTF-8
+      string: '{"desiredCapabilities":{"browserName":"firefox","version":"","platform":"ANY","javascriptEnabled":true,"cssSelectorsEnabled":true,"takesScreenshot":true,"nativeEvents":false,"rotatable":false}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '193'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '422'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:36 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"newSession","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":{"cssSelectorsEnabled":true,"browserName":"firefox","handlesAlerts":true,"javascriptEnabled":true,"nativeEvents":false,"platform":"Darwin","rotatable":false,"takesScreenshot":true,"version":"37.0.1","webStorageEnabled":true,"applicationCacheEnabled":true,"databaseEnabled":true,"locationContextEnabled":true,"acceptSslCerts":true}}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:36 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/url
+    body:
+      encoding: UTF-8
+      string: '{"url":"http://127.0.0.1:51631/"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '33'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '87'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:45 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"get","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":""}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:45 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Sign In'' or normalize-space(string(.))
+        = ''Sign In'') or ./@title = ''Sign In'') or .//img[./@alt = ''Sign In''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '162'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '148'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:45 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[{"ELEMENT":"{f8095177-38d7-d84c-9bb1-db13f0c2a3f5}"}]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:45 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7Bf8095177-38d7-d84c-9bb1-db13f0c2a3f5%7D/displayed
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '104'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:45 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"isElementDisplayed","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":true}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:45 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7Bf8095177-38d7-d84c-9bb1-db13f0c2a3f5%7D/click
+    body:
+      encoding: UTF-8
+      string: '{}'
+    headers:
+      Accept:
+      - application/json
+      Content-Length:
+      - '2'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '98'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:45 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"clickElement","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":"ok"}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:45 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//*[self::input | self::textarea][not(./@type
+        = ''submit'' or ./@type = ''image'' or ./@type = ''radio'' or ./@type = ''checkbox''
+        or ./@type = ''hidden'' or ./@type = ''file'')][(((./@id = ''email'' or ./@name
+        = ''email'') or ./@placeholder = ''email'') or ./@id = //label[normalize-space(string(.))
+        = ''email'']/@for)] | .//label[normalize-space(string(.)) = ''email'']//.//*[self::input
+        | self::textarea][not(./@type = ''submit'' or ./@type = ''image'' or ./@type
+        = ''radio'' or ./@type = ''checkbox'' or ./@type = ''hidden'' or ./@type =
+        ''file'')]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '547'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '148'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:45 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[{"ELEMENT":"{b2ca03ef-6ce8-4d41-aa52-83ae6eaf0395}"}]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:45 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7Bb2ca03ef-6ce8-4d41-aa52-83ae6eaf0395%7D/displayed
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '104'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:45 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"isElementDisplayed","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":true}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:45 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7Bb2ca03ef-6ce8-4d41-aa52-83ae6eaf0395%7D/enabled
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '102'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:45 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"isElementEnabled","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":true}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:45 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7Bb2ca03ef-6ce8-4d41-aa52-83ae6eaf0395%7D/name
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '106'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:45 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"getElementTagName","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":"input"}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:45 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7Bb2ca03ef-6ce8-4d41-aa52-83ae6eaf0395%7D/attribute/type
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '108'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:45 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"getElementAttribute","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":"email"}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:45 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7Bb2ca03ef-6ce8-4d41-aa52-83ae6eaf0395%7D/attribute/readonly
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '105'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:45 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"getElementAttribute","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":null}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:45 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/execute
+    body:
+      encoding: UTF-8
+      string: '{"script":"arguments[0].value = ''''","args":[{"ELEMENT":"{b2ca03ef-6ce8-4d41-aa52-83ae6eaf0395}"}]}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '98'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '99'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"executeScript","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":null}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7Bb2ca03ef-6ce8-4d41-aa52-83ae6eaf0395%7D/value
+    body:
+      encoding: UTF-8
+      string: '{"value":["clara_connelly@crooks.name"]}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '40'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '101'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"sendKeysToElement","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":""}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//*[self::input | self::textarea][not(./@type
+        = ''submit'' or ./@type = ''image'' or ./@type = ''radio'' or ./@type = ''checkbox''
+        or ./@type = ''hidden'' or ./@type = ''file'')][(((./@id = ''password'' or
+        ./@name = ''password'') or ./@placeholder = ''password'') or ./@id = //label[normalize-space(string(.))
+        = ''password'']/@for)] | .//label[normalize-space(string(.)) = ''password'']//.//*[self::input
+        | self::textarea][not(./@type = ''submit'' or ./@type = ''image'' or ./@type
+        = ''radio'' or ./@type = ''checkbox'' or ./@type = ''hidden'' or ./@type =
+        ''file'')]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '562'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '148'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[{"ELEMENT":"{88413563-a4fd-814a-9cc3-b62cef14806e}"}]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7B88413563-a4fd-814a-9cc3-b62cef14806e%7D/displayed
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '104'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"isElementDisplayed","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":true}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7B88413563-a4fd-814a-9cc3-b62cef14806e%7D/enabled
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '102'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"isElementEnabled","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":true}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7B88413563-a4fd-814a-9cc3-b62cef14806e%7D/name
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '106'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"getElementTagName","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":"input"}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7B88413563-a4fd-814a-9cc3-b62cef14806e%7D/attribute/type
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '111'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"getElementAttribute","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":"password"}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7B88413563-a4fd-814a-9cc3-b62cef14806e%7D/attribute/readonly
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '105'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"getElementAttribute","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":null}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/execute
+    body:
+      encoding: UTF-8
+      string: '{"script":"arguments[0].value = ''''","args":[{"ELEMENT":"{88413563-a4fd-814a-9cc3-b62cef14806e}"}]}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '98'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '99'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"executeScript","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":null}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7B88413563-a4fd-814a-9cc3-b62cef14806e%7D/value
+    body:
+      encoding: UTF-8
+      string: '{"value":["password"]}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '22'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '101'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"sendKeysToElement","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":""}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//input[./@type = ''submit'' or ./@type
+        = ''reset'' or ./@type = ''image'' or ./@type = ''button''][((./@id = ''Sign
+        In'' or ./@value = ''Sign In'') or ./@title = ''Sign In'')] | .//input[./@type
+        = ''image''][./@alt = ''Sign In''] | .//button[(((./@id = ''Sign In'' or ./@value
+        = ''Sign In'') or normalize-space(string(.)) = ''Sign In'') or ./@title =
+        ''Sign In'')] | .//input[./@type = ''image''][./@alt = ''Sign In'']"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '418'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '148'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[{"ELEMENT":"{b88d50c7-b805-2b48-a309-89e6665452ff}"}]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7Bb88d50c7-b805-2b48-a309-89e6665452ff%7D/displayed
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '104'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"isElementDisplayed","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":true}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7Bb88d50c7-b805-2b48-a309-89e6665452ff%7D/enabled
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '102'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"isElementEnabled","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":true}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:46 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/element/%7Bb88d50c7-b805-2b48-a309-89e6665452ff%7D/click
+    body:
+      encoding: UTF-8
+      string: '{}'
+    headers:
+      Accept:
+      - application/json
+      Content-Length:
+      - '2'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '98'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"clickElement","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":"ok"}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:47 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:47 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:47 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:47 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:47 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:47 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:47 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:47 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:47 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:48 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:49 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:49 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:49 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:49 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:49 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:49 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:49 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:49 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:49 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:49 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:49 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:49 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or normalize-space(string(.))
+        = ''Invite'') or ./@title = ''Invite'') or .//img[./@alt = ''Invite''])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '158'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:49 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:49 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:7055/hub/session/c326f960-af55-074a-a695-c1b692e5d72f/elements
+    body:
+      encoding: UTF-8
+      string: '{"using":"xpath","value":".//a[./@href][(((./@id = ''Invite'' or contains(normalize-space(string(.)),
+        ''Invite'')) or contains(./@title, ''Invite'')) or .//img[contains(./@alt,
+        ''Invite'')])]"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '185'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - close
+      Content-Length:
+      - '96'
+      Server:
+      - httpd.js
+      Date:
+      - Sat, 11 Apr 2015 23:12:49 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"findElements","sessionId":"c326f960-af55-074a-a695-c1b692e5d72f","status":0,"value":[]}'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 23:12:49 GMT
+recorded_with: VCR 2.9.3

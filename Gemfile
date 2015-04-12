@@ -37,7 +37,7 @@ end
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
-  gem 'rspec-rails', '3.2.0'
+  gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
 end
 
@@ -47,6 +47,7 @@ group :test do
   gem 'capybara-email'
   gem 'vcr'
   gem 'webmock'
+  gem 'selenium-webdriver'
 end
 
 group :production, :staging do
