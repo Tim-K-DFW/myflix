@@ -8,9 +8,12 @@ require 'capybara/rspec'
 require 'capybara/email/rspec'
 require 'sidekiq/testing'
 require 'vcr'
+require 'capybara/poltergeist'
+
 Sidekiq::Testing.inline!
 
 Capybara.server_port = 52662
+Capybara.javascript_driver = :poltergeist
 
 # load "#{Rails.root}/db/seeds.rb"
 
