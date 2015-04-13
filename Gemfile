@@ -25,6 +25,7 @@ gem 'mini_magick'
 gem 'fog'
 gem 'fog-aws'
 gem 'carrierwave'
+gem 'stripe'
 
 group :development do
   gem 'thin'
@@ -36,7 +37,7 @@ end
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
-  gem 'rspec-rails', '3.2.0'
+  gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
 end
 
@@ -44,6 +45,10 @@ group :test do
   gem 'database_cleaner', '1.2.0'
   gem 'capybara'
   gem 'capybara-email'
+  gem 'vcr'
+  gem 'webmock'
+  gem 'selenium-webdriver'
+  gem 'poltergeist'
 end
 
 group :production, :staging do
