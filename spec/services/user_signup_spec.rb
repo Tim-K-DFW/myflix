@@ -1,17 +1,19 @@
 require 'spec_helper'
 
 describe UserSignup do
-  before { stub_out_stripe_wrapper }
-
   describe '#signup' do
+    after { ActionMailer::Base.deliveries.clear }
+
     it 'returns self' do
+      stub_out_stripe_wrapper
       user = User.new(Fabricate.attributes_for(:user))
       signup_handle = UserSignup.new(user)
       response = signup_handle.signup('fake_stripe_token')
       expect(response).to eq(signup_handle)
     end
 
-    context 'with valid user personal data and valid card' do
+    context 'with valid user personal info and valid card' do
+      before { stub_out_stripe_wrapper }
       let(:attributes){ Fabricate.attributes_for(:user) }
       let(:user){ User.new(attributes) }
       let(:signup_handle){ UserSignup.new(user) }
@@ -28,7 +30,6 @@ describe UserSignup do
 
       context 'sending welcome email' do
         before { signup_handle.signup('fake_sripe_token') }
-        after { ActionMailer::Base.deliveries.clear }
 
         it 'sends welcome message' do
           expect(ActionMailer::Base.deliveries).not_to be_empty
@@ -54,72 +55,59 @@ describe UserSignup do
         signup_handle.signup('fake_sripe_token')
         expect(signup_handle.instance_variable_get(:@status)).to eq(:success)
       end
-    end
+    end # context 'with valid user personal info and valid card'
 
-    context 'with invalid user personal data' do
+    context 'with invalid user personal info' do
+      let(:user){ User.new(username: 'Pete') }
+      let(:signup_handle){ UserSignup.new(user) }
+
       it 'does not attempt to charge users credit card' do
         expect(StripeWrapper::Charge).not_to receive(:create)
-        post 'create', user: {username: 'Pete'}
+        signup_handle.signup('fake_sripe_token')
       end
-
-      it 'does not create new User record' do
-        expect(User.all.count).to eq(0)
-      end
-
-      it 'sets @status to :failure'
 
       it 'sets @error_message' do
-        expect(flash[:danger]).to eq('There was a problem with your input. Please fix it.')
+        signup_handle.signup('fake_sripe_token')
+        expect(signup_handle.error_message).to eq('There was a problem with your input. Please fix it.')
       end
-    end
+
+      it_behaves_like 'doesnt_create_new_user'
+    end # context with invalid user personal info
 
     context 'with valid user personal info and declined card' do
-      let(:stub_respnose) { double(successful?: false, error_message: 'fake message') }
-
+      let(:user){ User.new(Fabricate.attributes_for(:user)) }
+      let(:signup_handle){ UserSignup.new(user) }
       before do
-        allow(StripeWrapper::Charge).to receive(:create).and_return(stub_respnose)
-        post :create, user: Fabricate.attributes_for(:user)
+        stub_out_stripe_wrapper(:failure)
+        signup_handle.signup('fake_sripe_token')
       end
 
       it 'attempts to charge card' do
         expect(StripeWrapper::Charge).to receive(:create)
-        post :create, user: Fabricate.attributes_for(:user)
+        signup_handle.signup('fake_sripe_token')
       end
-
-      it 'sets @status to :failure'
 
       it 'sets @error_message' do
-        expect(flash[:danger]).to eq('There was a problem with your input. Please fix it.')
+        expect(signup_handle.error_message).to match(/problem with your payment/)
       end
 
-      it 'does not create new User record' do
-        expect(User.all.count).to eq(0)
-      end
-
-      it 'does not send welcome email' do
-        expect(ActionMailer::Base.deliveries).to be_empty
-      end
-    end # context 'user personal data valid but card declined'
-  
-    
+      it_behaves_like 'doesnt_create_new_user'
+    end # context 'with valid user info and declined card
   end
 
   describe '#handle_invitation' do
     let!(:pete) { Fabricate(:user) }
-    let!(:jimmy) { Fabricate.attributes_for(:user, username: 'Jimmy34') }
+    let!(:jimmy) { Fabricate(:user) }
     let!(:invitation){ Fabricate(:invitation, user: pete, friend_name: jimmy[:username], friend_email: jimmy[:email], token: 'fake_token') }
-    before { post :create, user: jimmy, invitation_token: invitation.token }
 
-    it 'finds correcnt invitation record'
+    before { UserSignup.new(jimmy).handle_invitation(invitation.token) }
 
     it 'creates relation where the new user follows inviter' do
-      jimmy = User.last
       expect(jimmy.following_relations.first.leader).to eq(pete)
       expect(pete.leading_relations.first.follower).to eq(jimmy)
     end
 
     it 'creates relation where inviter follows the new user' do
-      jimmy = User.last
       expect(pete.following_relations.first.leader).to eq(jimmy)
       expect(jimmy.leading_relations.first.follower).to eq(pete)
     end
