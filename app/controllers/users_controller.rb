@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     response = UserSignup.new(@user).signup(params[:stripeToken], params[:invitation_token])
     if response.successful?
       flash[:success] = 'You have successfully signed up. Welcome to MyFlix, and enjoy the movies!'
-      session[:user_id] = @user.id
+      session[:user_id] = response.user.id
       redirect_to home_path
     else
       flash[:danger] = response.error_message

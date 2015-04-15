@@ -26,46 +26,58 @@ describe UsersController do
 
   describe 'POST create' do
     let(:attributes) { Fabricate.attributes_for(:user) }
-    before { stub_out_signup_service }
 
     it 'passes all params to the new instance of User' do
+        stub_out_signup_service
         post 'create', user: attributes
         expect(assigns(:user).username).to eq(attributes[:username])
         expect(assigns(:user).email).to eq(attributes[:email])
     end
 
     it 'calls #new on UserSignup service passing @user as arg' do
+      stub_out_signup_service
       expect(UserSignup).to receive(:new).with(instance_of(User))
       post 'create', user: attributes
     end
 
     it 'calls #signup on the UserSignup handle passing controller args' do
-      response_stub = double(successful?: true)
-      registration_stub = double(signup: response_stub)
-      allow(UserSignup).to receive(:new).and_return(registration_stub)
-      allow_any_instance_of(UserSignup).to receive(:handle_invitation)
-
+      registration_stub = stub_out_signup_service
       expect(registration_stub).to receive(:signup).with('fake_stripe_token', 'fake_invitation_token')
       post 'create', user: attributes, stripeToken: 'fake_stripe_token', invitation_token: 'fake_invitation_token'
     end
 
     context 'with successful service response' do
-      before {   post 'create', user: attributes, stripeToken: 'fake_stripe_token', invitation_token: 'fake_invitation_token' }
+      before do
+        stub_out_signup_service
+        post 'create', user: attributes, stripeToken: 'fake_stripe_token'
+      end
 
       it 'sets up success flash' do
         expect(flash[:success]).to be_present
       end
 
       it 'sets up user session' do
-        expect(session[:user_id]).to eq(User.last.id)
+        expect(session[:user_id]).to eq('fake_id')
       end
 
-      it 'redirects to home path'
+      it 'redirects to home path' do
+        expect(response).to redirect_to(home_path)
+      end
     end
 
     context 'with failed service response' do
-      it 'sets up error flash'
-      it 'renders new template'
+      before do
+        stub_out_signup_service(:failure)
+        post 'create', user: attributes, stripeToken: 'fake_stripe_token'
+      end
+
+      it 'sets up error flash' do
+        expect(flash[:danger]).to eq('fake error message')
+      end
+
+      it 'renders new template' do
+        expect(response).to render_template(:new)
+      end
     end
   end
 
@@ -189,9 +201,17 @@ describe UsersController do
   end
 end
 
-def stub_out_signup_service
-  response_stub = double(successful?: true)
+def stub_out_signup_service(response=nil)
+  mock_user = double(id: 'fake_id')
+  response_stub = double(
+    successful?: response == :failure ? false : true,
+    user: mock_user,
+    error_message: 'fake error message'
+  )
+  
   registration_stub = double(signup: response_stub)
   allow(UserSignup).to receive(:new).and_return(registration_stub)
   allow_any_instance_of(UserSignup).to receive(:handle_invitation)
+  
+  registration_stub
 end

@@ -1,5 +1,5 @@
 class UserSignup
-  attr_reader :error_message
+  attr_reader :error_message, :user
 
   def initialize(user)
     @user = user
