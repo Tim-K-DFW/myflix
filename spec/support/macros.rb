@@ -40,7 +40,10 @@ def reset_password_flow(user)
   click_button('Reset Password')
 end
 
-def stub_out_stripe_wrapper
-  stub_respnose = double(successful?: true)
-  allow(StripeWrapper::Charge).to receive(:create).and_return(stub_respnose)
+def stub_out_stripe_wrapper(response=nil)
+  stub_response = double(
+    successful?: response == :failure ? false : true,
+    error_message: 'fake error message'
+  )
+  allow(StripeWrapper::Charge).to receive(:create).and_return(stub_response)
 end

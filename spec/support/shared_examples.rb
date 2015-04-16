@@ -26,3 +26,20 @@ shared_examples 'has_token' do
     expect(object.token).to be_present
   end
 end
+
+shared_examples 'doesnt_create_new_user' do
+  it 'does not create new User record' do
+    signup_handle.signup('fake_sripe_token')
+    expect(User.all.count).to eq(0)
+  end
+
+  it 'does not send welcome email' do
+    signup_handle.signup('fake_sripe_token')
+    expect(ActionMailer::Base.deliveries).to be_empty
+  end
+
+  it 'sets @status to :failed' do
+    signup_handle.signup('fake_sripe_token')
+    expect(signup_handle.instance_variable_get(:@status)).to eq(:failed)
+  end
+end
