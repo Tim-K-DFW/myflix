@@ -28,10 +28,11 @@ describe UsersController do
     let(:attributes) { Fabricate.attributes_for(:user) }
 
     it 'passes all params to the new instance of User' do
-        stub_out_signup_service
-        post 'create', user: attributes
-        expect(assigns(:user).username).to eq(attributes[:username])
-        expect(assigns(:user).email).to eq(attributes[:email])
+      stub_out_signup_service
+      post 'create', user: attributes
+      expect(assigns(:user).username).to eq(attributes[:username])
+      expect(assigns(:user).email).to eq(attributes[:email])
+      expect(assigns(:user).password).to eq(attributes[:password])
     end
 
     it 'calls #new on UserSignup service passing @user as arg' do

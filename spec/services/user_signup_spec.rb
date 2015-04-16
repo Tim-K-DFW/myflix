@@ -6,8 +6,7 @@ describe UserSignup do
 
     it 'returns self' do
       stub_out_stripe_wrapper
-      user = User.new(Fabricate.attributes_for(:user))
-      signup_handle = UserSignup.new(user)
+      signup_handle = UserSignup.new(Fabricate.build(:user))
       response = signup_handle.signup('fake_stripe_token')
       expect(response).to eq(signup_handle)
     end
@@ -15,8 +14,7 @@ describe UserSignup do
     context 'with valid user personal info and valid card' do
       before { stub_out_stripe_wrapper }
       let(:attributes){ Fabricate.attributes_for(:user) }
-      let(:user){ User.new(attributes) }
-      let(:signup_handle){ UserSignup.new(user) }
+      let(:signup_handle){ UserSignup.new(User.new(attributes)) }
 
       it 'charges users credit card' do
         expect(StripeWrapper::Charge).to receive(:create)
@@ -46,10 +44,30 @@ describe UserSignup do
         end
       end # context sending welcome email
 
-      it 'calls #handle_invitation if token was present' do
-        expect(signup_handle).to receive(:handle_invitation).with('fake_invitation_token')
-        signup_handle.signup('fake_sripe_token', 'fake_invitation_token')
-      end
+      context 'handing invitation if token passed' do
+        let!(:pete) { Fabricate(:user) }
+        let!(:jimmy) { Fabricate(:user) }
+        let!(:invitation){ Fabricate(:invitation, user: pete, friend_name: jimmy[:username], friend_email: jimmy[:email], token: 'fake_token') }
+
+        before do
+          signup_handle = UserSignup.new(jimmy)
+          signup_handle.signup('fake_sripe_token', invitation.token)
+        end
+
+        it 'creates relation where the new user follows inviter' do
+          expect(jimmy.following_relations.first.leader).to eq(pete)
+          expect(pete.leading_relations.first.follower).to eq(jimmy)
+        end
+
+        it 'creates relation where inviter follows the new user' do
+          expect(pete.following_relations.first.leader).to eq(jimmy)
+          expect(jimmy.leading_relations.first.follower).to eq(pete)
+        end
+
+        it 'destroys invitation record' do
+          expect(Invitation.all.count).to eq(0)
+        end
+      end # context handling invitation if token passed
 
       it 'sets @status to :success' do
         signup_handle.signup('fake_sripe_token')
@@ -58,8 +76,7 @@ describe UserSignup do
     end # context 'with valid user personal info and valid card'
 
     context 'with invalid user personal info' do
-      let(:user){ User.new(username: 'Pete') }
-      let(:signup_handle){ UserSignup.new(user) }
+      let(:signup_handle){ UserSignup.new(User.new(username: 'Pete')) }
 
       it 'does not attempt to charge users credit card' do
         expect(StripeWrapper::Charge).not_to receive(:create)
@@ -75,8 +92,7 @@ describe UserSignup do
     end # context with invalid user personal info
 
     context 'with valid user personal info and declined card' do
-      let(:user){ User.new(Fabricate.attributes_for(:user)) }
-      let(:signup_handle){ UserSignup.new(user) }
+      let(:signup_handle){ UserSignup.new(Fabricate.build(:user)) }
       before do
         stub_out_stripe_wrapper(:failure)
         signup_handle.signup('fake_sripe_token')
@@ -93,27 +109,5 @@ describe UserSignup do
 
       it_behaves_like 'doesnt_create_new_user'
     end # context 'with valid user info and declined card
-  end
-
-  describe '#handle_invitation' do
-    let!(:pete) { Fabricate(:user) }
-    let!(:jimmy) { Fabricate(:user) }
-    let!(:invitation){ Fabricate(:invitation, user: pete, friend_name: jimmy[:username], friend_email: jimmy[:email], token: 'fake_token') }
-
-    before { UserSignup.new(jimmy).handle_invitation(invitation.token) }
-
-    it 'creates relation where the new user follows inviter' do
-      expect(jimmy.following_relations.first.leader).to eq(pete)
-      expect(pete.leading_relations.first.follower).to eq(jimmy)
-    end
-
-    it 'creates relation where inviter follows the new user' do
-      expect(pete.following_relations.first.leader).to eq(jimmy)
-      expect(jimmy.leading_relations.first.follower).to eq(pete)
-    end
-
-    it 'destroys invitation record' do
-      expect(Invitation.all.count).to eq(0)
-    end
-  end # #hanle_invitation
+  end # #signup  
 end
