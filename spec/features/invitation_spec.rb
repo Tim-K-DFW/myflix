@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'a person registers with an invitation from a current user', :vcr do
+feature 'a person registers with an invitation from a current user', {vcr: true, js: true} do
   let!(:alice){ Fabricate(:user, username: 'Alice') }
   before { login(alice) }
   after { clear_email }
