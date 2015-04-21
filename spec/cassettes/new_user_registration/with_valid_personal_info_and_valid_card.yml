@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: source=tok_15sjIkBYANZ2Ahsm05oOwcO6&email=fake%40email.com&plan=regular
+      string: source=tok_15tp7yBYANZ2AhsmXf2wmNiJ&email=fake%40email.com&plan=regular
     headers:
       Accept:
       - '*/*; q=0.5, application/xml'
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 17 Apr 2015 23:55:14 GMT
+      - Tue, 21 Apr 2015 00:20:39 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_t4OUI6MYLv9g9dZG
+      - req_X02aZbpK9JnW53ul
       Stripe-Version:
       - '2015-03-24'
       Strict-Transport-Security:
@@ -59,8 +59,8 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1429314914,
-          "id": "cus_64t40WUovhZyFo",
+          "created": 1429575638,
+          "id": "cus_661ApmQqFhpPux",
           "livemode": false,
           "description": null,
           "email": "fake@email.com",
@@ -70,10 +70,10 @@ http_interactions:
             "object": "list",
             "total_count": 1,
             "has_more": false,
-            "url": "/v1/customers/cus_64t40WUovhZyFo/subscriptions",
+            "url": "/v1/customers/cus_661ApmQqFhpPux/subscriptions",
             "data": [
               {
-                "id": "sub_64t4uUo9snhTYj",
+                "id": "sub_661ALq1HGtPxOn",
                 "plan": {
                   "interval": "month",
                   "name": "Regular",
@@ -89,12 +89,12 @@ http_interactions:
                   "statement_descriptor": null
                 },
                 "object": "subscription",
-                "start": 1429314914,
+                "start": 1429575638,
                 "status": "active",
-                "customer": "cus_64t40WUovhZyFo",
+                "customer": "cus_661ApmQqFhpPux",
                 "cancel_at_period_end": false,
-                "current_period_start": 1429314914,
-                "current_period_end": 1431906914,
+                "current_period_start": 1429575638,
+                "current_period_end": 1432167638,
                 "ended_at": null,
                 "trial_start": null,
                 "trial_end": null,
@@ -114,10 +114,10 @@ http_interactions:
             "object": "list",
             "total_count": 1,
             "has_more": false,
-            "url": "/v1/customers/cus_64t40WUovhZyFo/sources",
+            "url": "/v1/customers/cus_661ApmQqFhpPux/sources",
             "data": [
               {
-                "id": "card_15sjIjBYANZ2AhsmEzDvQt2h",
+                "id": "card_15tp7yBYANZ2AhsmpefvFfdp",
                 "object": "card",
                 "last4": "4242",
                 "brand": "Visa",
@@ -138,12 +138,12 @@ http_interactions:
                 "address_zip_check": null,
                 "dynamic_last4": null,
                 "metadata": {},
-                "customer": "cus_64t40WUovhZyFo"
+                "customer": "cus_661ApmQqFhpPux"
               }
             ]
           },
-          "default_source": "card_15sjIjBYANZ2AhsmEzDvQt2h"
+          "default_source": "card_15tp7yBYANZ2AhsmpefvFfdp"
         }
     http_version: 
-  recorded_at: Fri, 17 Apr 2015 23:55:14 GMT
+  recorded_at: Tue, 21 Apr 2015 00:20:39 GMT
 recorded_with: VCR 2.9.3

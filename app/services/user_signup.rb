@@ -12,6 +12,7 @@ class UserSignup
         email: @user.email
       )
       if charge.successful?
+        @user.stripe_customer_id = charge.customer_token
         @user.save
         AppMailer.send_welcome_message(@user).deliver
         handle_invitation(invitation_token) if invitation_token

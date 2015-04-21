@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :leading_relations, class_name: 'Following', foreign_key: 'leader_id'
 
   has_many :invitations
+  has_many :payments
 
   def bump_up_queue
     users_queue = self.lines.order('priority ASC')

@@ -26,6 +26,11 @@ describe UserSignup do
         expect(User.all.size).to eq(1)
       end
 
+      it 'stores stripe customer id for the new user' do
+        signup_handle.signup('fake_sripe_token')
+        expect(User.last.stripe_customer_id).to eq('fake_customer_token')
+      end
+
       context 'sending welcome email' do
         before { signup_handle.signup('fake_sripe_token') }
 

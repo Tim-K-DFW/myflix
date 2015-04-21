@@ -43,7 +43,8 @@ end
 def stub_out_stripe_wrapper(response=nil)
   customer = double(
     successful?: response == :failure ? false : true,
-    error_message: 'fake error message'
+    error_message: 'fake error message',
+    customer_token: 'fake_customer_token'
   )
   allow(StripeWrapper::Customer).to receive(:create).and_return(customer)
 end

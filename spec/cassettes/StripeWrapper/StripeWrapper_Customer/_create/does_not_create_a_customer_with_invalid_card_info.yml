@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 17 Apr 2015 23:54:35 GMT
+      - Tue, 21 Apr 2015 00:20:13 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_Wla0vTRP73jR4dl7
+      - req_N3Jme5pZb7c5VvAC
       Stripe-Version:
       - '2015-03-24'
       Strict-Transport-Security:
@@ -58,14 +58,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_15sjI7BYANZ2Ahsm0Aez0d0j",
+          "id": "tok_15tp7ZBYANZ2AhsmOQCbGtJL",
           "livemode": false,
-          "created": 1429314875,
+          "created": 1429575613,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_15sjI7BYANZ2AhsmYq00vw7d",
+            "id": "card_15tp7ZBYANZ2Ahsm4tIF9n4q",
             "object": "card",
             "last4": "0002",
             "brand": "Visa",
@@ -89,13 +89,13 @@ http_interactions:
           "client_ip": "54.215.6.163"
         }
     http_version: 
-  recorded_at: Fri, 17 Apr 2015 23:54:35 GMT
+  recorded_at: Tue, 21 Apr 2015 00:20:13 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: source=tok_15sjI7BYANZ2Ahsm0Aez0d0j&plan=regular
+      string: source=tok_15tp7ZBYANZ2AhsmOQCbGtJL&plan=regular
     headers:
       Accept:
       - '*/*; q=0.5, application/xml'
@@ -121,7 +121,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 17 Apr 2015 23:54:36 GMT
+      - Tue, 21 Apr 2015 00:20:13 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -139,7 +139,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_eWTBNiC3RrKiDVlj
+      - req_ygPLByskapDNzkyQ
       Stripe-Version:
       - '2015-03-24'
     body:
@@ -154,5 +154,5 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Fri, 17 Apr 2015 23:54:36 GMT
+  recorded_at: Tue, 21 Apr 2015 00:20:13 GMT
 recorded_with: VCR 2.9.3

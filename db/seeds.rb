@@ -59,3 +59,7 @@ Video.all.each do |video|
   Fabricate(:review, video: video, author: pete)
   Fabricate(:review, video: video, author: mike)
 end
+
+Payment.create(user: pete, amount: 999, reference_id: 'chrge1', created_at: "2015-02-21 00:25:07")
+Payment.create(user: pete, amount: 999, reference_id: 'chrge2', created_at: "2015-03-21 00:25:07")
+Payment.create(user: pete, amount: 999, reference_id: 'chrge3', created_at: "2015-04-21 00:25:07")

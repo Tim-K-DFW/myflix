@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: source=tok_15sje7BYANZ2AhsmGPrSt8P9&email=fake%40email.com&plan=regular
+      string: source=tok_15tp7tBYANZ2AhsmLSI2KM48&email=fake%40email.com&plan=regular
     headers:
       Accept:
       - '*/*; q=0.5, application/xml'
@@ -17,8 +17,6 @@ http_interactions:
       - Bearer sk_test_nsVsYy52JP4PgGyO5gnJYJv8
       Content-Type:
       - application/x-www-form-urlencoded
-      Stripe-Version:
-      - '2015-01-11'
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"1.20.4","lang":"ruby","lang_version":"2.0.0 p598 (2014-11-13)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
         supersonic-ghost-34-172996 3.13.4 #1 SMP Thu Mar 6 03:42:38 UTC 2014 x86_64
@@ -33,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sat, 18 Apr 2015 00:17:20 GMT
+      - Tue, 21 Apr 2015 00:20:34 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '3195'
+      - '2296'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -51,9 +49,9 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_fkN7N55HA6xr9oNC
+      - req_u6IrpnrC10UkAvcC
       Stripe-Version:
-      - '2015-01-11'
+      - '2015-03-24'
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
     body:
@@ -61,8 +59,8 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1429316239,
-          "id": "cus_64tQAbIaSTceu4",
+          "created": 1429575634,
+          "id": "cus_661AswUblMD1sN",
           "livemode": false,
           "description": null,
           "email": "fake@email.com",
@@ -72,10 +70,10 @@ http_interactions:
             "object": "list",
             "total_count": 1,
             "has_more": false,
-            "url": "/v1/customers/cus_64tQAbIaSTceu4/subscriptions",
+            "url": "/v1/customers/cus_661AswUblMD1sN/subscriptions",
             "data": [
               {
-                "id": "sub_64tQOns2jkCRMC",
+                "id": "sub_661AVl3usiyHZv",
                 "plan": {
                   "interval": "month",
                   "name": "Regular",
@@ -91,12 +89,12 @@ http_interactions:
                   "statement_descriptor": null
                 },
                 "object": "subscription",
-                "start": 1429316239,
+                "start": 1429575634,
                 "status": "active",
-                "customer": "cus_64tQAbIaSTceu4",
+                "customer": "cus_661AswUblMD1sN",
                 "cancel_at_period_end": false,
-                "current_period_start": 1429316239,
-                "current_period_end": 1431908239,
+                "current_period_start": 1429575634,
+                "current_period_end": 1432167634,
                 "ended_at": null,
                 "trial_start": null,
                 "trial_end": null,
@@ -112,47 +110,14 @@ http_interactions:
           "discount": null,
           "account_balance": 0,
           "currency": "usd",
-          "cards": {
-            "object": "list",
-            "total_count": 1,
-            "has_more": false,
-            "url": "/v1/customers/cus_64tQAbIaSTceu4/cards",
-            "data": [
-              {
-                "id": "card_15sje7BYANZ2AhsmSs0pLa6L",
-                "object": "card",
-                "last4": "4242",
-                "brand": "Visa",
-                "funding": "credit",
-                "exp_month": 4,
-                "exp_year": 2018,
-                "fingerprint": "Z9AjS2ZYDjKqxwaU",
-                "country": "US",
-                "name": null,
-                "address_line1": null,
-                "address_line2": null,
-                "address_city": null,
-                "address_state": null,
-                "address_zip": null,
-                "address_country": null,
-                "cvc_check": "pass",
-                "address_line1_check": null,
-                "address_zip_check": null,
-                "dynamic_last4": null,
-                "metadata": {},
-                "customer": "cus_64tQAbIaSTceu4"
-              }
-            ]
-          },
-          "default_card": "card_15sje7BYANZ2AhsmSs0pLa6L",
           "sources": {
             "object": "list",
             "total_count": 1,
             "has_more": false,
-            "url": "/v1/customers/cus_64tQAbIaSTceu4/sources",
+            "url": "/v1/customers/cus_661AswUblMD1sN/sources",
             "data": [
               {
-                "id": "card_15sje7BYANZ2AhsmSs0pLa6L",
+                "id": "card_15tp7tBYANZ2Ahsm7o9xBPBN",
                 "object": "card",
                 "last4": "4242",
                 "brand": "Visa",
@@ -173,12 +138,12 @@ http_interactions:
                 "address_zip_check": null,
                 "dynamic_last4": null,
                 "metadata": {},
-                "customer": "cus_64tQAbIaSTceu4"
+                "customer": "cus_661AswUblMD1sN"
               }
             ]
           },
-          "default_source": "card_15sje7BYANZ2AhsmSs0pLa6L"
+          "default_source": "card_15tp7tBYANZ2Ahsm7o9xBPBN"
         }
     http_version: 
-  recorded_at: Sat, 18 Apr 2015 00:17:20 GMT
+  recorded_at: Tue, 21 Apr 2015 00:20:34 GMT
 recorded_with: VCR 2.9.3

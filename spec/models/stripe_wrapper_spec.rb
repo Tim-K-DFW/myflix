@@ -67,6 +67,14 @@ describe StripeWrapper, :vcr do
         expect(customer).to be_successful
       end
 
+      it 'returns customer token with valid card info' do
+        customer = StripeWrapper::Customer.create(
+          token: valid_token,
+          user: pete,
+        )
+        expect(customer.customer_token).to be_present
+      end
+
       it 'does not create a customer with invalid card info' do
         customer = StripeWrapper::Customer.create(
           token: invalid_token,
