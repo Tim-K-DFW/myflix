@@ -35,4 +35,8 @@ class User < ActiveRecord::Base
   def follow(another_user)
     following_relations.create(leader: another_user) if can_follow?(another_user)
   end
+
+  def lock_account
+    update(locked: true)
+  end
 end

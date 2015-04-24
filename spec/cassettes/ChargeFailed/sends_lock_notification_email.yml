@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.stripe.com/v1/events/evt_15tndSBYANZ2AhsmEhcfQANF
+    uri: https://api.stripe.com/v1/events/evt_15v6ZQBYANZ2AhsmLhKpdkmh
     body:
       encoding: US-ASCII
       string: ''
@@ -29,11 +29,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 24 Apr 2015 13:38:03 GMT
+      - Fri, 24 Apr 2015 13:17:40 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1914'
+      - '1898'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -47,7 +47,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_UgT5RdyzhKdZsIH3
+      - req_odaqJiHMc4WgXkrz
       Stripe-Version:
       - '2015-03-24'
       Strict-Transport-Security:
@@ -56,30 +56,30 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "evt_15tndSBYANZ2AhsmEhcfQANF",
-          "created": 1429569902,
+          "id": "evt_15v6ZQBYANZ2AhsmLhKpdkmh",
+          "created": 1429881016,
           "livemode": false,
-          "type": "charge.succeeded",
+          "type": "charge.failed",
           "data": {
             "object": {
-              "id": "ch_15tndSBYANZ2AhsmkV0eIIcd",
+              "id": "ch_15v6ZQBYANZ2AhsmnxsueRRy",
               "object": "charge",
-              "created": 1429569902,
+              "created": 1429881016,
               "livemode": false,
-              "paid": true,
-              "status": "succeeded",
+              "paid": false,
+              "status": "failed",
               "amount": 999,
               "currency": "usd",
               "refunded": false,
               "source": {
-                "id": "card_15tndRBYANZ2Ahsm4HFW0FZu",
+                "id": "card_15v6YhBYANZ2AhsmjuZAfTwg",
                 "object": "card",
-                "last4": "4242",
+                "last4": "0341",
                 "brand": "Visa",
                 "funding": "credit",
                 "exp_month": 4,
-                "exp_year": 2016,
-                "fingerprint": "Z9AjS2ZYDjKqxwaU",
+                "exp_year": 2018,
+                "fingerprint": "XDvOIJbkTDIoebS2",
                 "country": "US",
                 "name": null,
                 "address_line1": null,
@@ -93,16 +93,16 @@ http_interactions:
                 "address_zip_check": null,
                 "dynamic_last4": null,
                 "metadata": {},
-                "customer": "cus_65zcQiDhrNMRhN"
+                "customer": "cus_661Ek9s9uRtiu7"
               },
-              "captured": true,
-              "balance_transaction": "txn_15tndSBYANZ2Ahsm5eULLP4H",
-              "failure_message": null,
-              "failure_code": null,
+              "captured": false,
+              "balance_transaction": null,
+              "failure_message": "Your card was declined.",
+              "failure_code": "card_declined",
               "amount_refunded": 0,
-              "customer": "cus_65zcQiDhrNMRhN",
-              "invoice": "in_15tndSBYANZ2AhsmX5z21nnP",
-              "description": null,
+              "customer": "cus_661Ek9s9uRtiu7",
+              "invoice": null,
+              "description": "will fail",
               "dispute": null,
               "metadata": {},
               "statement_descriptor": null,
@@ -115,16 +115,16 @@ http_interactions:
                 "object": "list",
                 "total_count": 0,
                 "has_more": false,
-                "url": "/v1/charges/ch_15tndSBYANZ2AhsmkV0eIIcd/refunds",
+                "url": "/v1/charges/ch_15v6ZQBYANZ2AhsmnxsueRRy/refunds",
                 "data": []
               }
             }
           },
           "object": "event",
-          "pending_webhooks": 0,
-          "request": "iar_65zcXfNAy17Cs1",
+          "pending_webhooks": 2,
+          "request": "iar_67LFXMD8SoS9Lm",
           "api_version": "2015-03-24"
         }
     http_version: 
-  recorded_at: Fri, 24 Apr 2015 13:38:03 GMT
+  recorded_at: Fri, 24 Apr 2015 13:17:40 GMT
 recorded_with: VCR 2.9.3
