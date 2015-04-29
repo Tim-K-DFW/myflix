@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   has_many :leading_relations, class_name: 'Following', foreign_key: 'leader_id'
 
   has_many :invitations
-  has_many :payments
 
   def bump_up_queue
     users_queue = self.lines.order('priority ASC')
@@ -34,9 +33,5 @@ class User < ActiveRecord::Base
 
   def follow(another_user)
     following_relations.create(leader: another_user) if can_follow?(another_user)
-  end
-
-  def lock_account
-    update(locked: true)
   end
 end

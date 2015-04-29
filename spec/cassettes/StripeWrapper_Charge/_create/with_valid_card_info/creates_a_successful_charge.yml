@@ -18,9 +18,9 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.20.4","lang":"ruby","lang_version":"2.0.0 p598 (2014-11-13)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
-        supersonic-ghost-34-172996 3.13.4 #1 SMP Thu Mar 6 03:42:38 UTC 2014 x86_64
-        x86_64 x86_64 GNU/Linux"}'
+      - '{"bindings_version":"1.20.4","lang":"ruby","lang_version":"2.0.0 p598 (2014-11-13)","platform":"x86_64-darwin13.4.0","publisher":"stripe","uname":"Darwin
+        As-MacBook-Pro.local 13.4.0 Darwin Kernel Version 13.4.0: Sun Aug 17 19:50:11
+        PDT 2014; root:xnu-2422.115.4~1/RELEASE_X86_64 x86_64"}'
       Content-Length:
       - '81'
   response:
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 21 Apr 2015 00:20:14 GMT
+      - Sun, 12 Apr 2015 20:34:09 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_F407JupKlPKLi8Wc
+      - req_BtWnH2V9rJsuYs62
       Stripe-Version:
       - '2015-03-24'
       Strict-Transport-Security:
@@ -58,14 +58,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_15tp7aBYANZ2AhsmIzXTV1hX",
+          "id": "tok_15qrmPBYANZ2AhsmqZEOtJPz",
           "livemode": false,
-          "created": 1429575614,
+          "created": 1428870849,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_15tp7aBYANZ2AhsmPXvc25hw",
+            "id": "card_15qrmPBYANZ2AhsmeBls7Q4v",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -86,16 +86,16 @@ http_interactions:
             "address_zip_check": null,
             "dynamic_last4": null
           },
-          "client_ip": "54.215.6.163"
+          "client_ip": "68.203.89.27"
         }
     http_version: 
-  recorded_at: Tue, 21 Apr 2015 00:20:14 GMT
+  recorded_at: Sun, 12 Apr 2015 20:34:09 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&source=tok_15tp7aBYANZ2AhsmIzXTV1hX
+      string: amount=999&currency=usd&source=tok_15qrmPBYANZ2AhsmqZEOtJPz&description=test
     headers:
       Accept:
       - '*/*; q=0.5, application/xml'
@@ -108,11 +108,11 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.20.4","lang":"ruby","lang_version":"2.0.0 p598 (2014-11-13)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
-        supersonic-ghost-34-172996 3.13.4 #1 SMP Thu Mar 6 03:42:38 UTC 2014 x86_64
-        x86_64 x86_64 GNU/Linux"}'
+      - '{"bindings_version":"1.20.4","lang":"ruby","lang_version":"2.0.0 p598 (2014-11-13)","platform":"x86_64-darwin13.4.0","publisher":"stripe","uname":"Darwin
+        As-MacBook-Pro.local 13.4.0 Darwin Kernel Version 13.4.0: Sun Aug 17 19:50:11
+        PDT 2014; root:xnu-2422.115.4~1/RELEASE_X86_64 x86_64"}'
       Content-Length:
-      - '59'
+      - '76'
   response:
     status:
       code: 200
@@ -121,11 +121,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 21 Apr 2015 00:20:15 GMT
+      - Sun, 12 Apr 2015 20:34:10 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1367'
+      - '1369'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -139,7 +139,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_agaXNQsUNuUOHPyV
+      - req_Cy22B8QlYlyL74bt
       Stripe-Version:
       - '2015-03-24'
       Strict-Transport-Security:
@@ -148,9 +148,9 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_15tp7bBYANZ2AhsmM6OLiUQD",
+          "id": "ch_15qrmQBYANZ2AhsmVa59lbtX",
           "object": "charge",
-          "created": 1429575615,
+          "created": 1428870850,
           "livemode": false,
           "paid": true,
           "status": "succeeded",
@@ -158,7 +158,7 @@ http_interactions:
           "currency": "usd",
           "refunded": false,
           "source": {
-            "id": "card_15tp7aBYANZ2AhsmPXvc25hw",
+            "id": "card_15qrmPBYANZ2AhsmeBls7Q4v",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -182,13 +182,13 @@ http_interactions:
             "customer": null
           },
           "captured": true,
-          "balance_transaction": "txn_15tp7bBYANZ2AhsmPz1b18ZC",
+          "balance_transaction": "txn_15qrmQBYANZ2AhsmZGa0ovMm",
           "failure_message": null,
           "failure_code": null,
           "amount_refunded": 0,
           "customer": null,
           "invoice": null,
-          "description": null,
+          "description": "test",
           "dispute": null,
           "metadata": {},
           "statement_descriptor": null,
@@ -201,10 +201,10 @@ http_interactions:
             "object": "list",
             "total_count": 0,
             "has_more": false,
-            "url": "/v1/charges/ch_15tp7bBYANZ2AhsmM6OLiUQD/refunds",
+            "url": "/v1/charges/ch_15qrmQBYANZ2AhsmVa59lbtX/refunds",
             "data": []
           }
         }
     http_version: 
-  recorded_at: Tue, 21 Apr 2015 00:20:15 GMT
+  recorded_at: Sun, 12 Apr 2015 20:34:10 GMT
 recorded_with: VCR 2.9.3

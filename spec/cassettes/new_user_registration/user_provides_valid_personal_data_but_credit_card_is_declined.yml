@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&source=tok_15qxuFBYANZ2Ahsm68GVVU8V&description=sign-up%20fee%20for%20fake%40email.com
+      string: amount=999&currency=usd&source=tok_15qxUfBYANZ2AhsmOncUjK2q&description=sign-up%20fee%20for%20fake%40email.com
     headers:
       Accept:
       - '*/*; q=0.5, application/xml'
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 13 Apr 2015 03:06:40 GMT
+      - Mon, 13 Apr 2015 02:40:14 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_gnPmsCd8JnZ9IMHu
+      - req_K7d9rCSEDhnwZoiB
       Stripe-Version:
       - '2015-03-24'
     body:
@@ -60,9 +60,9 @@ http_interactions:
             "message": "Your card was declined.",
             "type": "card_error",
             "code": "card_declined",
-            "charge": "ch_15qxuGBYANZ2AhsmpDb3wtTE"
+            "charge": "ch_15qxUfBYANZ2AhsmtAMYVE1Z"
           }
         }
     http_version: 
-  recorded_at: Mon, 13 Apr 2015 03:06:40 GMT
+  recorded_at: Mon, 13 Apr 2015 02:40:13 GMT
 recorded_with: VCR 2.9.3

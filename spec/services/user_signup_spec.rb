@@ -17,18 +17,13 @@ describe UserSignup do
       let(:signup_handle){ UserSignup.new(User.new(attributes)) }
 
       it 'charges users credit card' do
-        expect(StripeWrapper::Customer).to receive(:create)
+        expect(StripeWrapper::Charge).to receive(:create)
         signup_handle.signup('fake_sripe_token')
       end
 
       it 'creates new User record' do
         signup_handle.signup('fake_sripe_token')
         expect(User.all.size).to eq(1)
-      end
-
-      it 'stores stripe customer id for the new user' do
-        signup_handle.signup('fake_sripe_token')
-        expect(User.last.stripe_customer_id).to eq('fake_customer_token')
       end
 
       context 'sending welcome email' do
@@ -84,7 +79,7 @@ describe UserSignup do
       let(:signup_handle){ UserSignup.new(User.new(username: 'Pete')) }
 
       it 'does not attempt to charge users credit card' do
-        expect(StripeWrapper::Customer).not_to receive(:create)
+        expect(StripeWrapper::Charge).not_to receive(:create)
         signup_handle.signup('fake_sripe_token')
       end
 
@@ -104,7 +99,7 @@ describe UserSignup do
       end
 
       it 'attempts to charge card' do
-        expect(StripeWrapper::Customer).to receive(:create)
+        expect(StripeWrapper::Charge).to receive(:create)
         signup_handle.signup('fake_sripe_token')
       end
 
