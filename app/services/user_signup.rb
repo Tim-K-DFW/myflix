@@ -7,12 +7,12 @@ class UserSignup
 
   def signup(stripe_token, invitation_token=nil)
     if @user.valid?
-      charge = StripeWrapper::Charge.create(
-        amount: 999,
+      charge = StripeWrapper::Customer.create(
         token: stripe_token,
-        description: "sign-up fee for #{@user.email}"
+        email: @user.email
       )
       if charge.successful?
+        @user.stripe_customer_id = charge.customer_token
         @user.save
         AppMailer.send_welcome_message(@user).deliver
         handle_invitation(invitation_token) if invitation_token

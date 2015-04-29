@@ -41,9 +41,10 @@ def reset_password_flow(user)
 end
 
 def stub_out_stripe_wrapper(response=nil)
-  stub_response = double(
+  customer = double(
     successful?: response == :failure ? false : true,
-    error_message: 'fake error message'
+    error_message: 'fake error message',
+    customer_token: 'fake_customer_token'
   )
-  allow(StripeWrapper::Charge).to receive(:create).and_return(stub_response)
+  allow(StripeWrapper::Customer).to receive(:create).and_return(customer)
 end

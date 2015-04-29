@@ -68,4 +68,23 @@ describe SessionsController do
       end
     end
   end # without authenticated user
+
+  context 'with blocked user account' do
+    before do
+      Fabricate(:user, locked: true)
+      post 'create', email: User.first.email, password: 'password'            
+    end
+
+    it 'does not set up session to user id' do
+      expect(session[:user_id]).to be_blank
+    end
+
+    it 'sets flash error' do
+      expect(flash[:danger]).to match(/locked/)
+    end
+
+    it 'redirects to register path' do
+      expect(response).to redirect_to(register_path)
+    end
+  end
 end

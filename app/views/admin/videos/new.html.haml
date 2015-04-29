@@ -5,7 +5,7 @@
         = bootstrap_form_for [:admin, @video], layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-6' do |f|
           %ul.nav.nav-tabs
             %li
-              = link_to 'Recent Payments', '#'
+              = link_to 'Recent Payments', admin_payments_path
             %li.active
               = link_to 'Add a New Video', new_admin_video_path
           %br
