@@ -27,7 +27,6 @@ gem 'fog-aws'
 gem 'carrierwave'
 gem 'stripe'
 gem 'draper'
-gem 'stripe_event'
 
 group :development do
   gem 'thin'

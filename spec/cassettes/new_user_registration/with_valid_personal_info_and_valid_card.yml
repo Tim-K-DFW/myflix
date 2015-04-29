@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.stripe.com/v1/customers
+    uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: source=tok_15tp7yBYANZ2AhsmXf2wmNiJ&email=fake%40email.com&plan=regular
+      string: amount=999&currency=usd&source=tok_15qxuKBYANZ2AhsmT44DsAgA&description=sign-up%20fee%20for%20fake%40email.com
     headers:
       Accept:
       - '*/*; q=0.5, application/xml'
@@ -18,11 +18,11 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.20.4","lang":"ruby","lang_version":"2.0.0 p598 (2014-11-13)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
-        supersonic-ghost-34-172996 3.13.4 #1 SMP Thu Mar 6 03:42:38 UTC 2014 x86_64
-        x86_64 x86_64 GNU/Linux"}'
+      - '{"bindings_version":"1.20.4","lang":"ruby","lang_version":"2.0.0 p598 (2014-11-13)","platform":"x86_64-darwin13.4.0","publisher":"stripe","uname":"Darwin
+        As-MacBook-Pro.local 13.4.0 Darwin Kernel Version 13.4.0: Sun Aug 17 19:50:11
+        PDT 2014; root:xnu-2422.115.4~1/RELEASE_X86_64 x86_64"}'
       Content-Length:
-      - '71'
+      - '110'
   response:
     status:
       code: 200
@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 21 Apr 2015 00:20:39 GMT
+      - Mon, 13 Apr 2015 03:06:44 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '2296'
+      - '1395'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_X02aZbpK9JnW53ul
+      - req_hDi88hLnmLveBTG6
       Stripe-Version:
       - '2015-03-24'
       Strict-Transport-Security:
@@ -58,92 +58,63 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "object": "customer",
-          "created": 1429575638,
-          "id": "cus_661ApmQqFhpPux",
+          "id": "ch_15qxuKBYANZ2AhsmuuXDFtIP",
+          "object": "charge",
+          "created": 1428894404,
           "livemode": false,
-          "description": null,
-          "email": "fake@email.com",
-          "delinquent": false,
-          "metadata": {},
-          "subscriptions": {
-            "object": "list",
-            "total_count": 1,
-            "has_more": false,
-            "url": "/v1/customers/cus_661ApmQqFhpPux/subscriptions",
-            "data": [
-              {
-                "id": "sub_661ALq1HGtPxOn",
-                "plan": {
-                  "interval": "month",
-                  "name": "Regular",
-                  "created": 1429187181,
-                  "amount": 999,
-                  "currency": "usd",
-                  "id": "regular",
-                  "object": "plan",
-                  "livemode": false,
-                  "interval_count": 1,
-                  "trial_period_days": null,
-                  "metadata": {},
-                  "statement_descriptor": null
-                },
-                "object": "subscription",
-                "start": 1429575638,
-                "status": "active",
-                "customer": "cus_661ApmQqFhpPux",
-                "cancel_at_period_end": false,
-                "current_period_start": 1429575638,
-                "current_period_end": 1432167638,
-                "ended_at": null,
-                "trial_start": null,
-                "trial_end": null,
-                "canceled_at": null,
-                "quantity": 1,
-                "application_fee_percent": null,
-                "discount": null,
-                "tax_percent": null,
-                "metadata": {}
-              }
-            ]
-          },
-          "discount": null,
-          "account_balance": 0,
+          "paid": true,
+          "status": "succeeded",
+          "amount": 999,
           "currency": "usd",
-          "sources": {
-            "object": "list",
-            "total_count": 1,
-            "has_more": false,
-            "url": "/v1/customers/cus_661ApmQqFhpPux/sources",
-            "data": [
-              {
-                "id": "card_15tp7yBYANZ2AhsmpefvFfdp",
-                "object": "card",
-                "last4": "4242",
-                "brand": "Visa",
-                "funding": "credit",
-                "exp_month": 4,
-                "exp_year": 2018,
-                "fingerprint": "Z9AjS2ZYDjKqxwaU",
-                "country": "US",
-                "name": null,
-                "address_line1": null,
-                "address_line2": null,
-                "address_city": null,
-                "address_state": null,
-                "address_zip": null,
-                "address_country": null,
-                "cvc_check": "pass",
-                "address_line1_check": null,
-                "address_zip_check": null,
-                "dynamic_last4": null,
-                "metadata": {},
-                "customer": "cus_661ApmQqFhpPux"
-              }
-            ]
+          "refunded": false,
+          "source": {
+            "id": "card_15qxuKBYANZ2AhsmPyxyHQ5Z",
+            "object": "card",
+            "last4": "4242",
+            "brand": "Visa",
+            "funding": "credit",
+            "exp_month": 4,
+            "exp_year": 2018,
+            "fingerprint": "Z9AjS2ZYDjKqxwaU",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "cvc_check": "pass",
+            "address_line1_check": null,
+            "address_zip_check": null,
+            "dynamic_last4": null,
+            "metadata": {},
+            "customer": null
           },
-          "default_source": "card_15tp7yBYANZ2AhsmpefvFfdp"
+          "captured": true,
+          "balance_transaction": "txn_15qxuKBYANZ2Ahsmu64DKUxp",
+          "failure_message": null,
+          "failure_code": null,
+          "amount_refunded": 0,
+          "customer": null,
+          "invoice": null,
+          "description": "sign-up fee for fake@email.com",
+          "dispute": null,
+          "metadata": {},
+          "statement_descriptor": null,
+          "fraud_details": {},
+          "receipt_email": null,
+          "receipt_number": null,
+          "shipping": null,
+          "application_fee": null,
+          "refunds": {
+            "object": "list",
+            "total_count": 0,
+            "has_more": false,
+            "url": "/v1/charges/ch_15qxuKBYANZ2AhsmuuXDFtIP/refunds",
+            "data": []
+          }
         }
     http_version: 
-  recorded_at: Tue, 21 Apr 2015 00:20:39 GMT
+  recorded_at: Mon, 13 Apr 2015 03:06:44 GMT
 recorded_with: VCR 2.9.3
