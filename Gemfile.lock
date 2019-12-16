@@ -89,7 +89,7 @@ GEM
       activesupport (>= 3.0)
       request_store (~> 1.0)
     erubis (2.7.0)
-    excon (0.45.1)
+    excon (0.71.0)
     execjs (2.0.2)
     fabrication (2.12.2)
     faker (1.4.3)
